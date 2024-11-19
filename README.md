@@ -1,42 +1,13 @@
-# Reserva App
+# CineMaps
+> Prova de conceito para aplicação final da disciplina de TDS (Profs. Leonardo Motta e Evandro Lourenço)
 
-Aplicação de exemplo para aulas sobre desenvolvimento web backend e criação de multipage applications utilizand Python e Flask.
+## Colaboradores
 
-## Usuários vs. Funcionalidades
-- Administrador
-  - Login
-  - Reservar Sala
-  - Ver Reservas
-  - Cancelar Reserva
-  - Gerenciar Salas
-  - Logout
-- Professor
-  - Cadastrar
-  - Login
-  - Reservar Sala
-  - Ver Reservas
-  - Cancelar Reserva
-  - Logout
+## Roteiro de Desenvolvimento
 
-## Models
-- Usuário
-  - codigo
-  - nome
-  - email
-  - senha
-  - ativo
-  - admin
-- Sala
-  - codigo
-  - capacidade
-  - ativa
-  - tipo
-  - descricao
-- Reserva
-  - codigo
-  - usuario
-  - sala
-  - data e hora início
-  - data e hora fim
-  - ativa
-  
+- [ ] Criação de classes modelo
+- [ ] Criação de páginas em HTML
+- [ ] Indexação com Python em Flask
+- [ ] Integração com o servidor com MySQL Connector
+- [ ] Criação de Back-end
+- [ ] Sessão e Autenticação
