@@ -3,6 +3,15 @@
 
 ## Colaboradores
 
+| Integrante       | Funcionalidade |
+|------------------|:--------------:|
+| Felipe Witkowsky |        -       |
+| Fernando Freitas |        -       |
+| Francine Midori  |        -       |
+| Gabriel Tarifa   |        -       |
+| Gustavo Batista  |        -       |
+| Mateus Nogueira  |        -       |
+
 ## Roteiro de Desenvolvimento
 
 - [ ] Criação de classes modelo
