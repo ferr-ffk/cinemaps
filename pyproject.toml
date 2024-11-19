@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "reserva-app"
+name = "cinemaps"
 version = "0.1.0"
 description = ""
-authors = ["Domingos Lucas <domingos.latorre@gmail.com>"]
+authors = ["Fernando Freitas de Lira <freitax.li@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
