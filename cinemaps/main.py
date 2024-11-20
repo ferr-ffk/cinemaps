@@ -1,6 +1,6 @@
 from flask import app, render_template, request, make_response, Flask
 
-app = Flask("cinemaps")
+app = Flask("cinemaps", template_folder="../templates")
 
 @app.route("/")
 def index() -> None:
