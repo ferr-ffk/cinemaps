@@ -1,88 +1,66 @@
 {% extends "layout.html" %} {% block children %}
 
-<h1>Cinemaps</h1>
-<p>
-  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum reiciendis
-  omnis ea enim quae cupiditate quaerat rem sint dignissimos non architecto aut
-  rerum eligendi quos, nemo voluptatem mollitia ipsam dicta.
-</p>
+<main>
+    <h1>Cinemaps</h1>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum reiciendis
+      omnis ea enim quae cupiditate quaerat rem sint dignissimos non architecto aut
+      rerum eligendi quos, nemo voluptatem mollitia ipsam dicta.
+    </p>
+</main>
 
-<div class="container">
-  <!-- <button
-    class="bt btn-primary glyphicon glyphicon-menu-hamburger"
-    type="button"
-    aria-controls="menu-lateral"
-    data-bs-toggle="offcanvas"
-    data-bs-target="#menu-lateral"
-  ></button> -->
+<!-- Componente de Pesquisa -->
+<div
+  class="container d-flex justify-content-between align-items-center rounded-pill"
+>
+  <div class="d-flex">
+      <button
+        class="border-0 bg-transparent mh-100"
+        type="button"
+        aria-controls="menu-lateral"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#menu-lateral"
+      >
+        <svg
+          style="max-height: 3.5dvh;"
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+          fill="currentColor"
+          class="bi bi-list"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+          />
+        </svg>
+      </button>
+      <form class="form-control border-0 bg-transparent fs-4">
+        <input class="bg-transparent border-0" type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar..." />
+      </form>
+  </div>
 
-  <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-    Button with data-bs-target
-  </button>
-
-  <div class="form-control">
-    <input type="text" id="pesquisar" name="pesquisar" />
+  <div class="d-flex justify-content-between fs-2">
+    <a href="#" class="col-md-6">logo</a>
+    <a href="#" class="col-md-6">perfil</a>
   </div>
 </div>
 
-<!-- <div
-  class="offcanvas offcanvas-down"
+<!-- Menu Lateral -->
+<div
+  class="offcanvas offcanvas-start"
   tabindex="-1"
   id="menu-lateral"
   aria-labelledby="menu-lateral"
 >
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-    <button
-      type="button"
-      class="btn-close text-reset"
-      data-bs-dismiss="offcanvas"
-      aria-label="Close"
-    ></button>
-  </div>
+  <div class="offcanvas-header">LOGO</div>
   <div class="offcanvas-body">
-    <div>
-      Some text as placeholder. In real life you can have the elements you have
-      chosen. Like, text, images, lists, etc.
-    </div>
-    <div class="dropdown mt-3">
-      <button
-        class="btn btn-secondary dropdown-toggle"
-        type="button"
-        id="dropdownMenuButton"
-        data-bs-toggle="dropdown"
-      >
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
-    </div>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis neque
+    repellendus, magnam similique architecto, dolores ex magni inventore ad
+    natus quod saepe quam officiis reprehenderit nisi, cum fugiat dolorum
+    voluptates.
   </div>
-</div> -->
-
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div>
-        Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-      </div>
-      <div class="dropdown mt-3">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-          Dropdown button
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><a class="dropdown-item" href="#">Something else here</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+</div>
 
 {% endblock %}
