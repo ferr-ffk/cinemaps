@@ -1,12 +1,12 @@
 {% extends "layout.html" %} {% block children %}
 
 <main>
-    <h1>Cinemaps</h1>
-    <p>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum reiciendis
-      omnis ea enim quae cupiditate quaerat rem sint dignissimos non architecto aut
-      rerum eligendi quos, nemo voluptatem mollitia ipsam dicta.
-    </p>
+  <h1>Cinemaps</h1>
+  <p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum reiciendis
+    omnis ea enim quae cupiditate quaerat rem sint dignissimos non architecto
+    aut rerum eligendi quos, nemo voluptatem mollitia ipsam dicta.
+  </p>
 </main>
 
 <!-- Componente de Pesquisa -->
@@ -14,36 +14,49 @@
   class="container d-flex justify-content-between align-items-center rounded-pill"
 >
   <div class="d-flex">
-      <button
-        class="border-0 bg-transparent mh-100"
-        type="button"
-        aria-controls="menu-lateral"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#menu-lateral"
+    <button
+      class="border-0 bg-transparent mh-100"
+      type="button"
+      aria-controls="menu-lateral"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#menu-lateral"
+    >
+      <svg
+        style="max-height: 3.5dvh"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100%"
+        fill="currentColor"
+        class="bi bi-list"
+        viewBox="0 0 16 16"
       >
-        <svg
-          style="max-height: 3.5dvh;"
-          xmlns="http://www.w3.org/2000/svg"
-          width="100%"
-          height="100%"
-          fill="currentColor"
-          class="bi bi-list"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-          />
-        </svg>
-      </button>
-      <form class="form-control border-0 bg-transparent fs-4">
-        <input class="bg-transparent border-0" type="text" id="pesquisar" name="pesquisar" placeholder="Pesquisar..." />
-      </form>
+        <path
+          fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+        />
+      </svg>
+    </button>
+    <form class="form-control border-0 bg-transparent fs-4">
+      <input
+        class="bg-transparent border-0"
+        type="text"
+        id="pesquisar"
+        name="pesquisar"
+        placeholder="Pesquisar..."
+      />
+    </form>
   </div>
 
   <div class="d-flex justify-content-between fs-2">
-    <a href="#" class="col-md-6">logo</a>
-    <a href="#" class="col-md-6">perfil</a>
+    <!-- <button type="button" data-bs-toggle="modal" data-bs-target="#modal-logo" href="#modal-logo" class="col-md-6">logo</button> -->
+    <button
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#modal-perfil"
+      href="#modal-perfil"
+    >
+      perfil
+    </button>
   </div>
 </div>
 
@@ -60,6 +73,49 @@
     repellendus, magnam similique architecto, dolores ex magni inventore ad
     natus quod saepe quam officiis reprehenderit nisi, cum fugiat dolorum
     voluptates.
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="modal-perfil"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered mh-5">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <div class="d-flex">
+            <div class="col-md-5">
+                PERFIL
+            </div>
+            <div class="col-md-7 d-flex justify-content-center flex-column">
+                <h3>NOME</h3>
+                <p>exemplo@gmail.com</p>
+            </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Fechar"
+        ></button>
+      </div>
+
+      <div class="modal-body">
+        <ul class="list-group d-flex flex-column list-unstyled fs-4">
+          <li><a style="color: currentColor;" href="#">Alterar nome de usuário</a></li>
+          <li><a style="color: currentColor;" href="#">Alterar email</a></li>
+          <li><a style="color: currentColor;" href="#">Alterar senha</a></li>
+          <li><a style="color: currentColor;" href="#">Excluir conta</a></li>
+        </ul>
+      </div>
+      
+    </div>
   </div>
 </div>
 
