@@ -6,8 +6,7 @@
 
 <!-- Componente de Pesquisa -->
 <div
-  class="bg-white container container-sm d-flex justify-content-between align-items-center rounded-pill p-2 position-absolute top-0 start-50 translate-middle mt-5 mb-5"
-  style="z-index: 1;"
+  class="bg-white container d-flex justify-content-between align-items-center rounded-pill p-2 position-absolute top-0 start-50 translate-middle mt-5 mb-5"
 >
   <div class="d-flex align-items-center">
     <button
@@ -19,8 +18,8 @@
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="100%"
-        height="100%"
+        width="35"
+        height="35"
         fill="currentColor"
         class="bi bi-list"
         viewBox="0 0 16 16"
@@ -31,31 +30,27 @@
         />
       </svg>
     </button>
-    <form class="m-0 d-flex align-items-center justify-content-center border-0 bg-transparent fs-4">
-      <input
-        class="bg-transparent border-0"
-        type="text"
-        id="pesquisar"
-        name="pesquisar"
-        placeholder="Pesquisar..."
-      />
-    </form>
-  </div>
+     <form class="m-0 d-flex align-items-center justify-content-center border-0 bg-transparent fs-4">
+        <input
+            class="bg-transparent border-0"
+            type="text"
+            id="pesquisar"
+            name="pesquisar"
+            placeholder="Pesquisar..."
+         />
+      </form>
+    </div>
 
-  <div class="col-md-1 col-sm-1 d-flex justify-content-between">
     <button
-      style="height: 100%;"
-      class="border border-0 bg-transparent h-100"
-      type="button"
-      data-bs-toggle="modal"
-      data-bs-target="#modal-perfil"
-      href="#modal-perfil"
+        class="col-md-1 col-sm-1 border-0 bg-transparent"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#modal-perfil"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-      </svg>
+        </svg>
     </button>
-  </div>
 </div>
 
 <!-- Menu Lateral -->
