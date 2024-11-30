@@ -1,229 +1,244 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block titulo %}Cinemaps{% endblock %}</title>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
     <!-- MapLibre CDN -->
-    <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css' />
-    <script src='https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js'></script>
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css"
+    />
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  </head>
+  <body>
     <!-- Componente de Pesquisa -->
     <div
-        class="bg-white container container-sm d-flex justify-content-between align-items-center rounded-pill p-2 position-absolute top-0 start-50 translate-middle my-5"
-        style="z-index: 1;"
+      class="bg-white container container-sm d-flex justify-content-between align-items-center rounded-pill p-2 position-absolute top-0 start-50 translate-middle my-5"
+      style="z-index: 1"
     >
-    <div class="d-flex align-items-center">
-    <button
-        class="col-md-1 col-sm-1 border-0 bg-transparent h-100"
-        type="button"
-        aria-controls="menu-lateral"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#menu-lateral"
-    >
-        <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="35"
-        height="35"
-        fill="currentColor"
-        class="bi bi-list"
-        viewBox="0 0 16 16"
+      <div class="d-flex align-items-center">
+        <button
+          class="col-md-1 col-sm-1 border-0 bg-transparent h-100"
+          type="button"
+          aria-controls="menu-lateral"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#menu-lateral"
         >
-        <path
-            fill-rule="evenodd"
-            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
-        />
-        </svg>
-    </button>
-    <form class="col-sm-2 m-0 d-flex align-items-center justify-content-center border-0 bg-transparent fs-4">
-        <input
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="35"
+            height="35"
+            fill="currentColor"
+            class="bi bi-list"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+            />
+          </svg>
+        </button>
+        <form
+          class="col-sm-2 m-0 d-flex align-items-center justify-content-center border-0 bg-transparent fs-4"
+        >
+          <input
             class="bg-transparent border-0"
             type="text"
             id="pesquisar"
             name="pesquisar"
             placeholder="Pesquisar..."
-        />
+          />
         </form>
-    </div>
+      </div>
 
-    <button
+      <button
         class="col-md-1 col-sm-1 border-0 bg-transparent"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#modal-perfil"
-    >
-        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="35"
+          height="35"
+          fill="currentColor"
+          class="bi bi-person-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
+          />
         </svg>
-    </button>
+      </button>
     </div>
 
     <!-- Mapa principal -->
     <main>
-        <div style="min-height: 100dvh;width:auto;" id="map"></div>
+      <div style="min-height: 100dvh; width: auto" id="map"></div>
     </main>
 
     <!-- Menu Lateral -->
     <div
-        class="offcanvas offcanvas-start"
-        style="width: 75dvw;"
-        tabindex="-1"
-        id="menu-lateral"
-        aria-labelledby="menu-lateral"
+      class="offcanvas offcanvas-start"
+      style="width: 75dvw"
+      tabindex="-1"
+      id="menu-lateral"
+      aria-labelledby="menu-lateral"
     >
-    <div class="offcanvas-header">LOGO</div>
-    <div class="offcanvas-body">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis neque
-    repellendus, magnam similique architecto, dolores ex magni inventore ad
-    natus quod saepe quam officiis reprehenderit nisi, cum fugiat dolorum
-    voluptates.
-    </div>
+      <div class="offcanvas-header">LOGO</div>
+      <div class="offcanvas-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+        neque repellendus, magnam similique architecto, dolores ex magni
+        inventore ad natus quod saepe quam officiis reprehenderit nisi, cum
+        fugiat dolorum voluptates.
+      </div>
     </div>
 
     <!-- Modal -->
     <div
-        class="modal fade"
-        id="modal-perfil"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
+      class="modal fade"
+      id="modal-perfil"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
     >
-    <div class="modal-dialog modal-dialog-centered mh-5">
-    <div class="modal-content">
-
-        <div class="modal-header">
-        <div class="d-flex">
-            <div class="col-md-5">
-                PERFIL
-            </div>
-            <div class="col-md-7 d-flex justify-content-center flex-column">
+      <div class="modal-dialog modal-dialog-centered mh-5">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="d-flex">
+              <div class="col-md-5">PERFIL</div>
+              <div class="col-md-7 d-flex justify-content-center flex-column">
                 <h3>NOME</h3>
                 <p>exemplo@gmail.com</p>
+              </div>
             </div>
-        </div>
 
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Fechar"
-        ></button>
-        </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
 
-        <div class="modal-body">
-        <ul class="list-group d-flex flex-column list-unstyled fs-4">
-            <li><a style="color: currentColor;" href="#">Alterar nome de usuário</a></li>
-            <li><a style="color: currentColor;" href="#">Alterar email</a></li>
-            <li><a style="color: currentColor;" href="#">Alterar senha</a></li>
-            <li><a style="color: currentColor;" href="#">Excluir conta</a></li>
-        </ul>
+          <div class="modal-body">
+            <ul class="list-group d-flex flex-column list-unstyled fs-4">
+              <li>
+                <a style="color: currentColor" href="#"
+                  >Alterar nome de usuário</a
+                >
+              </li>
+              <li><a style="color: currentColor" href="#">Alterar email</a></li>
+              <li><a style="color: currentColor" href="#">Alterar senha</a></li>
+              <li><a style="color: currentColor" href="#">Excluir conta</a></li>
+            </ul>
+          </div>
         </div>
-        
-    </div>
-    </div>
+      </div>
     </div>
 
-    {% block children %}
-    {% endblock %}
+    {% block children %} {% endblock %}
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <script type="module">
-        var map = new maplibregl.Map({
-            container: 'map', // container id
-            style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL', // style URL
-            // Coordenadas de sp
-            center: [-46.6388, -23.5489], // starting position [lng, lat]
-            zoom: 12 // starting zoom
-        });
-    
-        map.on('load', async () => {
-          // Add an image to use as a custom marker
-          const image = await map.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png');
-          map.addImage('custom-marker', image.data);
-    
-          map.addSource('points', {
-            'type': 'geojson',
-            'data': {
-                'type': 'FeatureCollection',
-                'features': [
-                    {
-                        'type': 'Feature',
-                        'properties': {
-                            idCinema: "1284"
-                        },
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': [
-                                -46.6174281585686,
-                                -23.543942899027343
-                            ]
-                        },
-                        idCinema: "1284"
-                    },
-                    {
-                        'type': 'Feature',
-                        'properties': {
-                            idCinema: "125125"
-                        },
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': [
-                                -46.621201604070166,
-                                -23.524672887623936
-                            ]
-                        }
-                    },
-                    {
-                        'type': 'Feature',
-                        'properties': {
-                            idCinema: "4568"
-                        },
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': [
-                                -46.66201974675158,
-                                -23.55660337207165
-                            ]
-                        }
-                    }
-                ]
-            }
-          });
-    
-          // Adicionar a camada 'symbols' com os pontos inseridos
-          map.addLayer({
-            'id': 'symbols',
-            'type': 'symbol',
-            'source': 'points',
-            'layout': {
-              'icon-image': 'custom-marker'
-            }
-          });
-    
-          // Muda o cursor para click quando passa por cima do marker
-          map.on('mouseenter', 'symbols', () => {
-            map.getCanvas().style.cursor = 'pointer';
-          });
-    
-          // E tira ele quando o mouse sair
-          map.on('mouseleave', 'symbols', () => {
-            map.getCanvas().style.cursor = '';
-        });
-          
-          map.on('click', 'symbols', (e) => {
-            // Obtém a data do objeto
-            const data = e.features[0].properties;
-
-            window.location.href = "/cinemas/" + data.idCinema;
-          });
+      var map = new maplibregl.Map({
+        container: "map", // container id
+        style:
+          "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL", // style URL
+        // Coordenadas de sp
+        center: [-46.6388, -23.5489], // starting position [lng, lat]
+        zoom: 12, // starting zoom
       });
 
+      map.on("load", async () => {
+        // Add an image to use as a custom marker
+        const image = await map.loadImage(
+          "https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png"
+        );
+        map.addImage("custom-marker", image.data);
+
+        map.addSource("points", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {
+                  idCinema: "1284",
+                },
+                geometry: {
+                  type: "Point",
+                  coordinates: [-46.6174281585686, -23.543942899027343],
+                },
+                idCinema: "1284",
+              },
+              {
+                type: "Feature",
+                properties: {
+                  idCinema: "125125",
+                },
+                geometry: {
+                  type: "Point",
+                  coordinates: [-46.621201604070166, -23.524672887623936],
+                },
+              },
+              {
+                type: "Feature",
+                properties: {
+                  idCinema: "4568",
+                },
+                geometry: {
+                  type: "Point",
+                  coordinates: [-46.66201974675158, -23.55660337207165],
+                },
+              },
+            ],
+          },
+        });
+
+        // Adicionar a camada 'symbols' com os pontos inseridos
+        map.addLayer({
+          id: "symbols",
+          type: "symbol",
+          source: "points",
+          layout: {
+            "icon-image": "custom-marker",
+          },
+        });
+
+        // Muda o cursor para click quando passa por cima do marker
+        map.on("mouseenter", "symbols", () => {
+          map.getCanvas().style.cursor = "pointer";
+        });
+
+        // E tira ele quando o mouse sair
+        map.on("mouseleave", "symbols", () => {
+          map.getCanvas().style.cursor = "";
+        });
+
+        map.on("click", "symbols", (e) => {
+          // Obtém a data do objeto
+          const data = e.features[0].properties;
+
+          window.location.href = "/cinemas/" + data.idCinema;
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
