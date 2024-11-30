@@ -154,18 +154,23 @@
                 'features': [
                     {
                         'type': 'Feature',
-                        'properties': {},
+                        'properties': {
+                            idCinema: "1284"
+                        },
                         'geometry': {
                             'type': 'Point',
                             'coordinates': [
                                 -46.6174281585686,
                                 -23.543942899027343
                             ]
-                        }
+                        },
+                        idCinema: "1284"
                     },
                     {
                         'type': 'Feature',
-                        'properties': {},
+                        'properties': {
+                            idCinema: "125125"
+                        },
                         'geometry': {
                             'type': 'Point',
                             'coordinates': [
@@ -176,7 +181,9 @@
                     },
                     {
                         'type': 'Feature',
-                        'properties': {},
+                        'properties': {
+                            idCinema: "4568"
+                        },
                         'geometry': {
                             'type': 'Point',
                             'coordinates': [
@@ -210,7 +217,10 @@
         });
           
           map.on('click', 'symbols', (e) => {
-            window.location.href = "/cinemas/123"
+            // Obtém a data do objeto
+            const data = e.features[0].properties;
+
+            window.location.href = "/cinemas/" + data.idCinema;
           });
       });
 
