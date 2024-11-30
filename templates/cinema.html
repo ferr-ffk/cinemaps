@@ -1,9 +1,5 @@
 {% extends "layout.html" %} {% block children %}
 
-<main>
-  <div style="min-height: 100dvh;width:auto;" id="map"></div>
-</main>
-
 <!-- Menu Lateral -->
 <div
   class="offcanvas offcanvas-start"
@@ -147,91 +143,6 @@
     var bsOffCanvas = new bootstrap.Offcanvas(offCanvas);
 
     bsOffCanvas.show()
-
-    var map = new maplibregl.Map({
-        container: 'map', // container id
-        style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL', // style URL
-        // Coordenadas de sp
-        center: [-46.6388, -23.5489], // starting position [lng, lat]
-        zoom: 12 // starting zoom
-    });
-
-    map.on('load', async () => {
-      // Add an image to use as a custom marker
-      const image = await map.loadImage('https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png');
-      map.addImage('custom-marker', image.data);
-
-      map.addSource('points', {
-        'type': 'geojson',
-        'data': {
-            'type': 'FeatureCollection',
-            'features': [
-                {
-                    'type': 'Feature',
-                    'properties': {},
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [
-                            -46.6174281585686,
-                            -23.543942899027343
-                        ]
-                    }
-                },
-                {
-                    'type': 'Feature',
-                    'properties': {},
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [
-                            -46.621201604070166,
-                            -23.524672887623936
-                        ]
-                    }
-                },
-                {
-                    'type': 'Feature',
-                    'properties': {},
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [
-                            -46.66201974675158,
-                            -23.55660337207165
-                        ]
-                    }
-                }
-            ]
-        }
-      });
-
-      // Adicionar a camada 'symbols' com os pontos inseridos
-      map.addLayer({
-        'id': 'symbols',
-        'type': 'symbol',
-        'source': 'points',
-        'layout': {
-          'icon-image': 'custom-marker'
-        }
-      });
-
-      // Muda o cursor para click quando passa por cima do marker
-      map.on('mouseenter', 'symbols', () => {
-        map.getCanvas().style.cursor = 'pointer';
-      });
-
-      // E tira ele quando o mouse sair
-      map.on('mouseleave', 'symbols', () => {
-        map.getCanvas().style.cursor = '';
-    });
-      
-      map.on('click', 'symbols', (e) => {
-        window.location.href = "/cinemas/123"
-      });
-
-      map.on('mousemove', e => {
-        console.log(e.lngLat.wrap())
-      })
-  });
-
 </script>
 
 {% endblock %}
