@@ -1,17 +1,13 @@
 {% extends "layout.html" %} {% block children %}
 
 <main>
-  <h1>Cinemaps</h1>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsum reiciendis
-    omnis ea enim quae cupiditate quaerat rem sint dignissimos non architecto
-    aut rerum eligendi quos, nemo voluptatem mollitia ipsam dicta.
-  </p>
+  <div style="min-height: 100dvh;width:auto;" id="map"></div>
 </main>
 
 <!-- Componente de Pesquisa -->
 <div
-  class="bg-white container container-sm d-flex justify-content-between align-items-center rounded-pill p-2"
+  class="bg-white container container-sm d-flex justify-content-between align-items-center rounded-pill p-2 position-absolute top-0 start-50 translate-middle mt-5 mb-5"
+  style="z-index: 1;"
 >
   <div class="d-flex align-items-center">
     <button
@@ -199,5 +195,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    var map = new maplibregl.Map({
+        container: 'map', // container id
+        style: 'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL', // style URL
+        center: [-46.6388, -23.5489], // starting position [lng, lat]
+        zoom: 11 // starting zoom
+    });
+</script>
 
 {% endblock %}
