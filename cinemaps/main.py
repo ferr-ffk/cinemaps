@@ -9,7 +9,7 @@ def index():
 
 @app.route("/cinemas/<int:cinema>")
 def cinema(cinema: int):
-    return "Cinema {}".format(cinema)
+    return render_template("cinema.html", cinema=cinema)
 
 
 @app.route("/cinemas")
