@@ -238,6 +238,16 @@
           window.location.href = "/cinemas/" + data.idCinema;
         });
       });
+
+      // Pede acesso à localização do usuário e centraliza o mapa nessa posição
+      map.addControl(
+          new maplibregl.GeolocateControl({
+              positionOptions: {
+                  enableHighAccuracy: true
+              },
+              trackUserLocation: true
+          })
+      );
     </script>
   </body>
 </html>
