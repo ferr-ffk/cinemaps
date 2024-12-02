@@ -154,71 +154,71 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <!-- É necessário declarar o script como module para obter todas as classes do MapLibre -->
     <script type="module">
       var map = new maplibregl.Map({
-        container: "map", // container id
+        container: "map", // Id do container
         style:
-          "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL", // style URL
+          "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL", // Obtém o estilo padrão de mapa
         // Coordenadas de sp
         center: [-46.6388, -23.5489], // starting position [lng, lat]
-        zoom: 12, // starting zoom
+        zoom: 12, // Zoom inicial, no nível de cidade
       });
 
-      map.on("load", async () => {
-        // Add an image to use as a custom marker
-        const image = await map.loadImage(
-          "https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png"
-        );
-        map.addImage("custom-marker", image.data);
-
-        map.addSource("points", {
-          type: "geojson",
-          data: {
-            type: "FeatureCollection",
-            features: [
-              {
-                type: "Feature",
-                properties: {
-                  idCinema: "1284",
+        map.on("load", async () => {
+          // Add an image to use as a custom marker
+          const image = await map.loadImage(
+            "https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png"
+          );
+          map.addImage("custom-marker", image.data);
+  
+          map.addSource("points", {
+            type: "geojson",
+            data: {
+              type: "FeatureCollection",
+              features: [
+                {
+                  type: "Feature",
+                  properties: {
+                    idCinema: "1284",
+                  },
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-46.6174281585686, -23.543942899027343],
+                  },
                 },
-                geometry: {
-                  type: "Point",
-                  coordinates: [-46.6174281585686, -23.543942899027343],
+                {
+                  type: "Feature",
+                  properties: {
+                    idCinema: "125125",
+                  },
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-46.621201604070166, -23.524672887623936],
+                  },
                 },
-                idCinema: "1284",
-              },
-              {
-                type: "Feature",
-                properties: {
-                  idCinema: "125125",
+                {
+                  type: "Feature",
+                  properties: {
+                    idCinema: "4568",
+                  },
+                  geometry: {
+                    type: "Point",
+                    coordinates: [-46.66201974675158, -23.55660337207165],
+                  },
                 },
-                geometry: {
-                  type: "Point",
-                  coordinates: [-46.621201604070166, -23.524672887623936],
-                },
-              },
-              {
-                type: "Feature",
-                properties: {
-                  idCinema: "4568",
-                },
-                geometry: {
-                  type: "Point",
-                  coordinates: [-46.66201974675158, -23.55660337207165],
-                },
-              },
-            ],
-          },
-        });
-
-        // Adicionar a camada 'symbols' com os pontos inseridos
-        map.addLayer({
-          id: "symbols",
-          type: "symbol",
-          source: "points",
-          layout: {
-            "icon-image": "custom-marker",
-          },
+              ],
+            },
+          });
+  
+          // Adicionar a camada 'symbols' com os pontos inseridos
+          map.addLayer({
+            id: "symbols",
+            type: "symbol",
+            source: "points",
+            layout: {
+              "icon-image": "custom-marker",
+            },
         });
 
         // Muda o cursor para click quando passa por cima do marker
@@ -235,6 +235,7 @@
           // Obtém a data do objeto
           const data = e.features[0].properties;
 
+          // Redireciona para a página daquele cinema
           window.location.href = "/cinemas/" + data.idCinema;
         });
       });
