@@ -1,6 +1,6 @@
 from flask import app, render_template, request, make_response, Flask, redirect, url_for
 
-app = Flask("cinemaps", template_folder="../templates")
+app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
 
 @app.route("/")
 def index():
