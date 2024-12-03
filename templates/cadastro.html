@@ -1,0 +1,67 @@
+{% block children %}
+
+<main>
+    <div class="d-flex align-items-center justify-content-center" style="height: 15dvh;">
+        LOGO
+    </div>
+    <div class="bg-warning rounded-top-5 position-absolute vw-100 py-3 px-5"
+        style="min-height: 85dvh; bottom: 0; left: 0; right: 0;">
+        <div class="d-flex justify-content-center align-items-center py-4 text-white">
+            <h1>Fazer cadastro</h1>
+        </div>
+        <form action="" class="d-flex flex-column justify-content-center align-items-center">
+            <div class="h-75 py-3 border-top border-bottom">
+                <div class="d-flex justify-content-center">
+                    <div class="w-50 h-25">
+                        <label for="foto" aria-label="Foto"
+                            class="d-flex justify-content-center align-items-center p-3 bg-white rounded"
+                            style="width: 100%; height: auto; aspect-ratio: 1;">
+                            <div class="position-relative">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="currentColor"
+                                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                    <path fill-rule="evenodd"
+                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                </svg>
+                                <div class="icone-editar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+                                        fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path
+                                            d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </label>
+                        <input class="d-none" type="file" id="foto" name="foto" accept="image/png, image/jpeg">
+                    </div>
+                </div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="my-3 d-flex flex-column justify-content-center">
+                        <label class="mx-2" for="usuario">Nome de usuário</label>
+                        <input class="border rounded-pill px-3 sombra" type="text" id="usuario" name="usuario">
+                    </div>
+                    <div class="my-3 d-flex flex-column justify-content-center">
+                        <!-- Tem que colocar &nbsp; porque só 'Email' não é suficiente pra preencher a linha toda -->
+                        <label class="mx-2" for="email">Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input class="border rounded-pill px-3 sombra" type="email" id="email" name="email">
+                    </div>
+                    <div class="my-3 d-flex flex-column justify-content-center">
+                        <label class="mx-2" for="senha">Crie uma senha</label>
+                        <input class="border rounded-pill px-3 sombra" type="password" id="senha" name="senha">
+                    </div>
+                    <div class="my-3 d-flex flex-column justify-content-center">
+                        <label class="mx-2" for="senha-confirmar">Confirme a senha</label>
+                        <input class="border rounded-pill px-3 sombra" type="password" id="senha-confirmar"
+                            name="senha-confirmar">
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center gap-2 my-3">
+                <a href="/" class="btn border-2 border-danger text-danger fw-bold">Cancelar</a>
+                <button type="submit" class="btn btn-danger fw-bold fs-6">Enviar</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+{% endblock %}
