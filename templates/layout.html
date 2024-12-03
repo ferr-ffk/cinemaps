@@ -74,130 +74,133 @@
     <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   </head>
   <body>
-    <!-- Componente de Pesquisa -->
-    <div
-      class="bg-white container container-sm d-flex justify-content-between align-items-center rounded-pill p-2 position-absolute top-0 start-50 translate-middle my-5"
-      style="z-index: 1"
-    >
-      <div class="d-flex align-items-center col-md-11 col-sm-11">
+    {% block info_mapa %}
+      <!-- Componente de Pesquisa -->
+      <div
+        class="bg-white container container-sm d-flex justify-content-between align-items-center rounded-pill p-2 position-absolute top-0 start-50 translate-middle my-5"
+        style="z-index: 1"
+      >
+        <div class="d-flex align-items-center col-md-11 col-sm-11">
+          <button
+            class="col-md-1 col-sm-1 border-0 bg-transparent h-100"
+            type="button"
+            aria-controls="menu-lateral"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#menu-lateral"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="35"
+              fill="currentColor"
+              class="bi bi-list"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+              />
+            </svg>
+          </button>
+          <form
+            class="d-flex align-items-center justify-content-center border-0 bg-transparent fs-4"
+          >
+            <input
+              class="bg-transparent border-0"
+              type="text"
+              id="pesquisar"
+              name="pesquisar"
+              placeholder="Pesquisar..."
+            />
+          </form>
+        </div>
+
         <button
-          class="col-md-1 col-sm-1 border-0 bg-transparent h-100"
+          class="col-md-2 col-sm-2 border-0 bg-transparent"
           type="button"
-          aria-controls="menu-lateral"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#menu-lateral"
+          data-bs-toggle="modal"
+          data-bs-target="#modal-perfil"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="35"
             height="35"
             fill="currentColor"
-            class="bi bi-list"
+            class="bi bi-person-fill"
             viewBox="0 0 16 16"
           >
             <path
-              fill-rule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+              d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
             />
           </svg>
         </button>
-        <form
-          class="d-flex align-items-center justify-content-center border-0 bg-transparent fs-4"
-        >
-          <input
-            class="bg-transparent border-0"
-            type="text"
-            id="pesquisar"
-            name="pesquisar"
-            placeholder="Pesquisar..."
-          />
-        </form>
       </div>
 
-      <button
-        class="col-md-2 col-sm-2 border-0 bg-transparent"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#modal-perfil"
+      <!-- Mapa principal -->
+      <main>
+        <div style="min-height: 100dvh; width: auto" id="map"></div>
+      </main>
+
+      <!-- Menu Lateral -->
+      <div
+        class="offcanvas offcanvas-start"
+        style="width: 75dvw"
+        tabindex="-1"
+        id="menu-lateral"
+        aria-labelledby="menu-lateral"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="35"
-          height="35"
-          fill="currentColor"
-          class="bi bi-person-fill"
-          viewBox="0 0 16 16"
-        >
-          <path
-            d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"
-          />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mapa principal -->
-    <main>
-      <div style="min-height: 100dvh; width: auto" id="map"></div>
-    </main>
-
-    <!-- Menu Lateral -->
-    <div
-      class="offcanvas offcanvas-start"
-      style="width: 75dvw"
-      tabindex="-1"
-      id="menu-lateral"
-      aria-labelledby="menu-lateral"
-    >
-      <div class="offcanvas-header border-1 border-bottom p-6">LOGO</div>
-      <div class="offcanvas-body">
-        <ul class="list-group list-unstyled fs-3 px-3 gap-4">
-            <li><a href="#" style="color: currentColor;" class="text-decoration-none">Salvos</a></li>
-            <li><a href="#" style="color: currentColor;" class="text-decoration-none">Histórico</a></li>
-            <li><a href="#" style="color: currentColor;" class="text-decoration-none">Configurações</a></li>
-            <li><a href="#" style="color: currentColor;" class="text-decoration-none">Ajuda</a></li>
-            <li><a href="#" style="color: currentColor;" class="text-decoration-none">Sair</a></li>
-        </ul>
+        <div class="offcanvas-header border-1 border-bottom p-6">LOGO</div>
+        <div class="offcanvas-body">
+          <ul class="list-group list-unstyled fs-3 px-3 gap-4">
+              <li><a href="#" style="color: currentColor;" class="text-decoration-none">Salvos</a></li>
+              <li><a href="#" style="color: currentColor;" class="text-decoration-none">Histórico</a></li>
+              <li><a href="#" style="color: currentColor;" class="text-decoration-none">Configurações</a></li>
+              <li><a href="#" style="color: currentColor;" class="text-decoration-none">Ajuda</a></li>
+              <li><a href="#" style="color: currentColor;" class="text-decoration-none">Sair</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="modal-perfil"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered mh-5">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="d-flex">
-              <div class="col-md-5">PERFIL</div>
-              <div class="col-md-7 d-flex justify-content-center flex-column">
-                <h3 class="fw-bold">NOME</h3>
-                <p class="fw-bold">exemplo@gmail.com</p>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="modal-perfil"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered mh-5">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="d-flex">
+                <div class="col-md-5">PERFIL</div>
+                <div class="col-md-7 d-flex justify-content-center flex-column">
+                  <h3 class="fw-bold">NOME</h3>
+                  <p class="fw-bold">exemplo@gmail.com</p>
+                </div>
               </div>
+
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Fechar"
+              ></button>
             </div>
 
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Fechar"
-            ></button>
-          </div>
-
-          <div class="modal-body">
-            <ul class="list-group d-flex flex-column list-unstyled fs-5">
-              <li><a class="text-decoration-none" style="color: currentColor" href="#">Alterar nome de usuário</a></li>
-              <li><a class="text-decoration-none" style="color: currentColor" href="#">Alterar email</a></li>
-              <li><a class="text-decoration-none" style="color: currentColor" href="#">Alterar senha</a></li>
-              <li><a class="text-decoration-none" style="color: currentColor" href="#">Excluir conta</a></li>
-            </ul>
+            <div class="modal-body">
+              <ul class="list-group d-flex flex-column list-unstyled fs-5">
+                <li><a class="text-decoration-none" style="color: currentColor" href="#">Alterar nome de usuário</a></li>
+                <li><a class="text-decoration-none" style="color: currentColor" href="#">Alterar email</a></li>
+                <li><a class="text-decoration-none" style="color: currentColor" href="#">Alterar senha</a></li>
+                <li><a class="text-decoration-none" style="color: currentColor" href="#">Excluir conta</a></li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+
+    {% endblock %}
 
     {% block children %} {% endblock %}
 
