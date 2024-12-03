@@ -7,6 +7,16 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+
+@app.route("/cadastro")
+def cadastro():
+    return render_template("cadastro.html")
+
+
 @app.route("/cinemas/<int:cinema>")
 def cinema(cinema: int):
     return render_template("cinema.html", cinema=cinema)
