@@ -28,12 +28,10 @@ def login_post():
     
     # Adicionar à sessão
     # Pegar id do usuário no banco
-    usuario = {
+    session = {
         "email": request.form['email'],
         "usuario": "nome_usuario_obtido_do_banco"
     }
-    
-    session['usuario'] = usuario
     
     return redirect(url_for(index.__name__))
 
@@ -55,7 +53,7 @@ def cadastro_post():
     
     # Adicionar à sessão
     for key in usuario:
-        session['usuario'][key] = usuario[key]
+        session[key] = usuario[key]
     
     return redirect(url_for(index.__name__))
 
