@@ -1,8 +1,9 @@
 from flask import app, render_template, request, make_response, Flask, redirect, url_for, session
+from secrets import token_urlsafe
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
 
-app.config['SECRET_KEY'] = "abc"
+app.config['SECRET_KEY'] = token_urlsafe(16)
 
 @app.route("/debug/limpar-sessao")
 def limpar_sessao():
