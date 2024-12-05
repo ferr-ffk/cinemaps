@@ -3,7 +3,7 @@
 
 ## 📖 Descrição
 
-CineMaps é uma plataforma de integração de diversos serviços fornecidos por cinemas de uma região. Coleta e organiza cinemas por filmes expostos, preço e variedade de alimentos e horários das sessões. O usuário tem a capacidade de pesquisar realizar pesquisas por cinemas, filmes, ou sessões, como desejar.
+CineMaps é uma plataforma de integração de diversos serviços fornecidos por cinemas de uma região. Coleta e organiza cinemas por filmes expostos, preço e variedade de alimentos e horários das sessões. O usuário tem a capacidade de realizar pesquisas por cinemas, filmes, ou sessões, como desejar.
 
 ## 👪 Colaboradores
 
