@@ -14,7 +14,7 @@ def limpar_sessao():
 def index():
     print(session)
     
-    return render_template("index.html", teste="TESTEEEEEEEEEEEEEEEEE")
+    return render_template("index.html")
 
 
 @app.route("/login")
