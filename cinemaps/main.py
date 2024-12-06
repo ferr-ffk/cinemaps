@@ -4,6 +4,17 @@ app = Flask("cinemaps", template_folder="../templates", static_folder="../static
 
 app.config['SECRET_KEY'] = '\xc3$Fg+\xeb\xb4T\xa4\x19~\xf1$\xbd_}^A\xfcOA_\x9c\xfb\xa3\xcbK\x05\xb9W\xe3\x04'
 
+
+@app.route("/debug/sessao")
+def exibir_sessao():
+    s = ''
+    
+    for key in session:
+        s = s + key + ": " + session[key] + "\n"
+    
+    return s
+
+
 @app.route("/debug/limpar-sessao")
 def limpar_sessao():
     session.clear()
@@ -28,10 +39,13 @@ def login_post():
     
     # Adicionar à sessão
     # Pegar id do usuário no banco
-    session = {
+    usuario = {
         "email": request.form['email'],
-        "usuario": "nome_usuario_obtido_do_banco"
+        "usuario": "nome_usuario_obtido_do_banco",
     }
+    
+    for key in usuario:
+        session[key] = usuario[key]
     
     return redirect(url_for(index.__name__))
 
