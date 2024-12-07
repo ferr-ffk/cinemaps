@@ -6,7 +6,7 @@ USUARIO_REGEX = "^[A-Za-z][A-Za-z0-9_]{3,16}$"
 # Mínimo de oito caracteres, ao menos uma letra, um número e um caractere especial
 SENHA_REGEX = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
 
-EMAIL_REGEX = "^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$"
+EMAIL_REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
 
 
 def nome_usuario_valido(usuario: str) -> bool:
