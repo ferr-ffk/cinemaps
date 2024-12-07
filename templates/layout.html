@@ -74,7 +74,7 @@
     {% with messages = get_flashed_messages() %}
       {% if messages %}
         {% for message in messages %}
-          <div style="z-index: 20;" class="alert alert-success alert-dismissible fade show position-absolute bottom-0 start-50 translate-middle-x" role="alert">
+          <div style="z-index: 20;" class="mb-5 alert alert-success alert-dismissible fade show position-absolute bottom-0 start-50 translate-middle-x" role="alert">
             {{ message }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
@@ -83,7 +83,7 @@
     {% endwith %}
 
     {% if erro %}
-      <div style="z-index: 20;" class="alert alert-{{ tipo_erro }} alert-dismissible fade show position-absolute bottom-0 start-50 translate-middle-x" role="alert">
+      <div style="z-index: 20;" class="mb-5 alert alert-{{ tipo_erro }} alert-dismissible fade show position-absolute bottom-0 start-50 translate-middle-x" role="alert">
         {{ erro }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
