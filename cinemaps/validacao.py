@@ -8,6 +8,7 @@ SENHA_REGEX = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
 
 EMAIL_REGEX = "^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
 
+
 def nome_usuario_valido(usuario: str) -> bool:
     """Valida um nome de usuário com base nos critérios de:
         - Possui entre 4 e 16 caracteres
@@ -21,6 +22,7 @@ def nome_usuario_valido(usuario: str) -> bool:
     """
     
     return re.match(USUARIO_REGEX, usuario)
+
 
 def senha_valida(senha: str, senha_confirmar: str) -> bool:
     """Valida uma senha com base nos seguintes critérios:
@@ -39,8 +41,10 @@ def senha_valida(senha: str, senha_confirmar: str) -> bool:
     
     return senhas_iguais(senha, senha_confirmar) and re.match(SENHA_REGEX, senha)
 
+
 def senhas_iguais(senha: str, senha_confirmar: str) -> bool:
     return senha == senha_confirmar
+
 
 def validar_email(email: str) -> bool:
     """Valida umm email, é redundante mas evita o usuário que tente burlar o sistema alterando o tipo do input.
