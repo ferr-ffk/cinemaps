@@ -1,4 +1,6 @@
-from flask import app, render_template, request, make_response, Flask, redirect, url_for, session
+from flask import app, render_template, request, make_response, Flask, redirect, url_for, session, flash
+
+from cinemaps.validacao import *
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
 
@@ -35,8 +37,6 @@ def login():
 
 @app.route("/login", methods=['post'])
 def login_post():
-    # Verificar se nome de usuário ou senha são válidos
-    
     # Adicionar à sessão
     # Pegar id do usuário no banco
     usuario = {
@@ -57,19 +57,38 @@ def cadastro():
 
 @app.route("/cadastro", methods=['post'])
 def cadastro_post():
+    erro = None
+    
+    # Verificar se nome de usuário ou senha são válidos
+    if not nome_usuario_valido(request.form['usuario']):
+        erro = "Nome de usuário invalido! Certifique-se que tem entre 6 e 16 caracteres e não inicia ou termina com números."
+        
+        return render_template("cadastro.html", erro=erro, tipo_erro="warning")
+        
+        
+    if not senha_valida(request.form['senha'], request.form['senha-confirmar']):
+        erro = "Senha inválida! Verifique se os campos são iguais e possui no mínimo de oito caracteres, ao menos uma letra, um número e um caractere especial"
+        
+        return render_template("cadastro.html", erro=erro, tipo_erro="warning")
+        
+        
     usuario = {
         "usuario": request.form['usuario'],
         "email": request.form['email'],
         "senha": request.form['senha'],
     }
-    
+
     # Criar usuário no banco usando o fetch
     
+    flash("Conta criada com sucesso!")
+
     # Adicionar à sessão
     for key in usuario:
         session[key] = usuario[key]
-    
+
     return redirect(url_for(index.__name__))
+    
+    
 
 
 @app.route("/cinemas/<int:cinema>")
