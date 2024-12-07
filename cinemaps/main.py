@@ -25,6 +25,16 @@ def limpar_sessao():
     
     return redirect(url_for(index.__name__))
 
+
+@app.route("/sair")
+def sair():
+    session.clear()
+    
+    flash("Sessão encerrada.")
+    
+    return redirect(url_for(index.__name__))
+
+
 @app.route("/")
 def index():
     print(session)
