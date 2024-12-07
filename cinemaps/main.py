@@ -21,6 +21,8 @@ def exibir_sessao():
 def limpar_sessao():
     session.clear()
     
+    flash("DEBUG : SESSÃO ZERADA")
+    
     return redirect(url_for(index.__name__))
 
 @app.route("/")
@@ -52,6 +54,12 @@ def login_post():
 
 @app.route("/cadastro")
 def cadastro():
+    # Limita o usuário a fazer outro cadastro com sua conta já logada
+    if session:
+        flash("Conta já criada! Encerre sua sessão para prosseguir para a tela de cadastro.")
+        
+        return redirect(url_for(index.__name__))
+    
     return render_template("cadastro.html")
 
 
