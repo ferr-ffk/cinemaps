@@ -70,6 +70,12 @@ def cadastro_post():
         erro = "Senha inválida! Verifique se os campos são iguais e possui no mínimo de oito caracteres, ao menos uma letra, um número e um caractere especial"
         
         return render_template("cadastro.html", erro=erro, tipo_erro="warning")
+    
+    
+    if not validar_email(request.form['email']):
+        erro = "Email inválido! Digite um email válido para continuar."
+        
+        return render_template("cadastro.html", erro=erro, tipo_erro="danger")
         
         
     usuario = {
