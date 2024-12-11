@@ -3,10 +3,14 @@ import requests
 
 from cinemaps.validacao import *
 from service.usuario import *
+from util.sql import criar_banco_cinemaps
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
 
 app.config['SECRET_KEY'] = '\xc3$Fg+\xeb\xb4T\xa4\x19~\xf1$\xbd_}^A\xfcOA_\x9c\xfb\xa3\xcbK\x05\xb9W\xe3\x04'
+
+
+criar_banco_cinemaps()
 
 
 @app.route("/sair")
