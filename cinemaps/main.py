@@ -164,15 +164,6 @@ def api_cinemas():
     ]
 
 
-@app.route("/teste_api_cinemas")
-def teste_api_cinemas():
-    url = request.url_root + "api/cinemas"
-
-    c = requests.get(url)
-
-    return c.json()
-
-
 @app.errorhandler(404)
 def nao_encontrado(e):
     return "A página {} não foi encontrada! Voltar para a principal <a href=\"/\">por aqui</a>".format(request.path), 404
