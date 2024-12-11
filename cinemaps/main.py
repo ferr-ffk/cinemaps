@@ -37,9 +37,20 @@ def login():
 @app.route("/login", methods=['post'])
 def login_post():
     # Pegar id do usuário no banco
+    usuario = select_from_tabela_por_condicao('usuario', f'WHERE email = {request.form['email']}')
+    
+    usuario_existe = len(usuario) > 0
+    
+    usuario = usuario[0]
+    
+    if not usuario_existe:
+        erro = "Usuário não encontrado. Certifique-se de que o email foi digitado corretamente."
+        
+        return render_template("cadastro.html", erro=erro, tipo_erro="warning")
+    
     usuario = {
         "email": request.form['email'],
-        "usuario": "nome_usuario_obtido_do_banco",
+        "usuario": usuario['usuario']
     }
     
     # Adicionar à sessão
