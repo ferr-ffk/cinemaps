@@ -2,6 +2,7 @@ from flask import app, render_template, request, make_response, Flask, redirect,
 import requests
 
 from cinemaps.validacao import *
+import service.usuario
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
 
@@ -85,6 +86,7 @@ def cadastro_post():
     }
 
     # Criar usuário no banco usando o fetch
+    requests.post(request.url_root + "usuarios", headers=usuario)
     
     flash("Conta criada com sucesso!")
 
@@ -162,6 +164,13 @@ def api_cinemas():
             "nome": "z"
         }
     ]
+
+
+@app.route("/usuarios", methods=['post', 'get'])
+def usuarios():
+    service.usuario.UsuarioService.criar_usuario(request.headers.get('usuario'))
+
+    return redirect(url_for(index.__name__))
 
 
 @app.errorhandler(404)
