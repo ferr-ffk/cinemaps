@@ -37,16 +37,16 @@ def login():
 @app.route("/login", methods=['post'])
 def login_post():
     # Pegar id do usuário no banco
-    usuario = select_from_tabela_por_condicao('usuario', f'WHERE email = {request.form['email']}')
+    usuario = select_from_tabela_por_condicao('usuario', f'WHERE email = \'{request.form['email']}\'')
     
     usuario_existe = len(usuario) > 0
-    
-    usuario = usuario[0]
     
     if not usuario_existe:
         erro = "Usuário não encontrado. Certifique-se de que o email foi digitado corretamente."
         
-        return render_template("cadastro.html", erro=erro, tipo_erro="warning")
+        return render_template("login.html", erro=erro, tipo_erro="warning")
+    
+    usuario = usuario[0]
     
     usuario = {
         "email": request.form['email'],
