@@ -1,4 +1,4 @@
-from mysql.connector import *
+from mysql.connector import connect, MySQLConnection
 from .sql import *
 
 
@@ -28,7 +28,7 @@ def fechar_conexao(con: MySQLConnection) -> None:
 
 
 def criar_conexao_padrao() -> None:
-    return abrir_conexao('localhost', 'estudante1', '123', 123, 'Cinemaps')
+    return abrir_conexao('localhost', 'estudante1', '123', 'Cinemaps')
 
 
 def criar_banco_cinemaps() -> None:
