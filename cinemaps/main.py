@@ -31,13 +31,13 @@ def login():
 
 @app.route("/login", methods=['post'])
 def login_post():
-    # Adicionar à sessão
     # Pegar id do usuário no banco
     usuario = {
         "email": request.form['email'],
         "usuario": "nome_usuario_obtido_do_banco",
     }
     
+    # Adicionar à sessão
     for key in usuario:
         session[key] = usuario[key]
     
