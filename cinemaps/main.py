@@ -112,8 +112,6 @@ def cadastro_post():
         session[key] = usuario[key]
 
     return redirect(url_for(index.__name__))
-    
-    
 
 
 @app.route("/cinemas/<int:cinema>")
