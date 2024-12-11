@@ -24,7 +24,13 @@ def executar_sql(conexao, sql: str) -> Optional[list]:
 
 
 def select_from_tabela(tabela: str) -> Optional[list]:
-    return executar_sql(f'SELECT * FROM {tabela}')
+    conexao = criar_conexao_padrao()
+    
+    r = executar_sql(conexao, f'SELECT * FROM {tabela}')
+
+    fechar_conexao(conexao)
+    
+    return r
 
 
 def insert_into_tabela(d: dict, tabela: str) -> None:
