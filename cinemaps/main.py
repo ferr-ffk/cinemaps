@@ -86,7 +86,7 @@ def cadastro_post():
     }
 
     # Criar usuário no banco usando o fetch
-    requests.post(request.url_root + "usuarios", headers=usuario)
+    requests.post(request.url_root + "api/usuarios", headers=usuario)
     
     flash("Conta criada com sucesso!")
 
@@ -166,8 +166,8 @@ def api_cinemas():
     ]
 
 
-@app.route("/usuarios", methods=['post', 'get'])
-def usuarios():
+@app.route("/api/usuarios", methods=['post', 'get'])
+def api_usuarios():
     usuario = {
         "usuario": request.headers.get("usuario"),
         "senha": request.headers.get("senha"),
