@@ -33,6 +33,16 @@ def select_from_tabela(tabela: str) -> Optional[list]:
     return r
 
 
+def select_from_tabela_por_id(tabela: str, id: int) -> Optional[list]:
+    conexao = criar_conexao_padrao()
+    
+    r = executar_sql(conexao, f'SELECT * FROM {tabela} WHERE id = {id}')
+
+    fechar_conexao(conexao)
+    
+    return r
+
+
 def insert_into_tabela(d: dict, tabela: str) -> None:
     conexao = criar_conexao_padrao()
 
