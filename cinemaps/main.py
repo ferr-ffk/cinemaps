@@ -171,7 +171,8 @@ def usuarios():
     usuario = {
         "usuario": request.headers.get("usuario"),
         "senha": request.headers.get("senha"),
-        "email": request.headers.get("email")
+        "email": request.headers.get("email"),
+        "apelido": ""
     }
 
     service.usuario.UsuarioService.criar_usuario(usuario)
