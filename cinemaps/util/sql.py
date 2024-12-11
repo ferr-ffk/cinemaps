@@ -50,8 +50,9 @@ def insert_into_tabela(d: dict, tabela: str) -> None:
 def criar_banco_cinemaps() -> None:
     conexao = criar_conexao_padrao()
     
-    executar_sql(
-        conexao,
+    cursor = conexao.cursor(dictionary=True)
+    
+    cursor.execute(
         """
         CREATE DATABASE IF NOT EXISTS Cinemaps;
         USE Cinemaps;
@@ -86,7 +87,8 @@ def criar_banco_cinemaps() -> None:
 
         CREATE TABLE IF NOT EXISTS Usuario (
             id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(100) NOT NULL UNIQUE,
+            usuario VARCHAR(100) NOT NULL UNIQUE,
+            email VARCHAR(100) NOT NULL,
             apelido VARCHAR(50),
             senha VARCHAR(255) NOT NULL
         );
