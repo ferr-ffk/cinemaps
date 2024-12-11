@@ -5,4 +5,4 @@ class UsuarioService:
         insert_into_tabela(u, 'Usuario')
 
     def read_usuarios() -> Optional[list]:
-        select_from_tabela('Usuario')
+        return select_from_tabela('Usuario')
