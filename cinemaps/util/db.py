@@ -28,11 +28,14 @@ def fechar_conexao(con: MySQLConnection) -> None:
 
 
 def criar_conexao_padrao() -> None:
-    return abrir_conexao('localhost', 'estudante1', '123', 'Cinemaps')
+    return abrir_conexao('localhost', 'root', '123456', 'Cinemaps')
 
 
 def criar_banco_cinemaps() -> None:
+    conexao = criar_conexao_padrao()
+    
     executar_sql(
+        conexao,
         """
         CREATE DATABASE IF NOT EXISTS Cinemaps;
         USE Cinemaps;
@@ -104,3 +107,5 @@ def criar_banco_cinemaps() -> None:
             FOREIGN KEY (id_cinema) REFERENCES Cinema(id_cinema)
         );
         """)
+    
+    fechar_conexao(conexao)
