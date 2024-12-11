@@ -168,7 +168,13 @@ def api_cinemas():
 
 @app.route("/usuarios", methods=['post', 'get'])
 def usuarios():
-    service.usuario.UsuarioService.criar_usuario(request.headers.get('usuario'))
+    usuario = {
+        "usuario": request.headers.get("usuario"),
+        "senha": request.headers.get("senha"),
+        "email": request.headers.get("email")
+    }
+
+    service.usuario.UsuarioService.criar_usuario(usuario)
 
     return redirect(url_for(index.__name__))
 
