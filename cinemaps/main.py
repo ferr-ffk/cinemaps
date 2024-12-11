@@ -2,7 +2,7 @@ from flask import app, render_template, request, make_response, Flask, redirect,
 import requests
 
 from cinemaps.validacao import *
-from .service.usuario import *
+from service.usuario import *
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
 
