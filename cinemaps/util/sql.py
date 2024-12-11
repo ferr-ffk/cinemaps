@@ -1,12 +1,12 @@
 from typing import Optional
-from mysql.connector import *
+from .db import criar_conexao_padrao, fechar_conexao
 
 
 def executar_sql(conexao, sql: str) -> Optional[list]:
     """Executa um sql em uma conexão estabelecida.
 
     Args:
-        conexao (MySQLConnection): A conexão que será utilizada
+        conexao (): A conexão que será utilizada
         sql (str): A string do SQL a ser executado
     """
 
@@ -28,13 +28,17 @@ def select_from_tabela(tabela: str) -> Optional[list]:
 
 
 def insert_into_tabela(d: dict, tabela: str) -> None:
+    conexao = criar_conexao_padrao()
+
     campos = ', '.join([key for key in d])
 
     valores = ', '.join('\'' + str(d[key]) + '\'' for key in d)
 
     sql = f'INSERT INTO {tabela} ({campos}) VALUES ({valores})'
 
-    executar_sql(sql)
+    executar_sql(conexao, sql)
+
+    fechar_conexao(conexao)
 
 
 if __name__ == "__main__":
