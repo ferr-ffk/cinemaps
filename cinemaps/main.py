@@ -8,25 +8,6 @@ app = Flask("cinemaps", template_folder="../templates", static_folder="../static
 app.config['SECRET_KEY'] = '\xc3$Fg+\xeb\xb4T\xa4\x19~\xf1$\xbd_}^A\xfcOA_\x9c\xfb\xa3\xcbK\x05\xb9W\xe3\x04'
 
 
-@app.route("/debug/sessao")
-def exibir_sessao():
-    s = ''
-    
-    for key in session:
-        s = s + key + ": " + session[key] + "\n"
-    
-    return s
-
-
-@app.route("/debug/limpar-sessao")
-def limpar_sessao():
-    session.clear()
-    
-    flash("DEBUG : SESSÃO ZERADA")
-    
-    return redirect(url_for(index.__name__))
-
-
 @app.route("/sair")
 def sair():
     session.clear()
