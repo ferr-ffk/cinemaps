@@ -90,7 +90,7 @@ def cadastro_post():
         return render_template("cadastro.html", erro=erro, tipo_erro="warning")
     
     
-    if not validar_email(request.form['email']):
+    if not email_valido(request.form['email']):
         erro = "Email inválido! Digite um email válido para continuar."
         
         return render_template("cadastro.html", erro=erro, tipo_erro="danger")

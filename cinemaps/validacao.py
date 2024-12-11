@@ -46,7 +46,7 @@ def senhas_iguais(senha: str, senha_confirmar: str) -> bool:
     return senha == senha_confirmar
 
 
-def validar_email(email: str) -> bool:
+def email_valido(email: str) -> bool:
     """Valida umm email, é redundante mas evita o usuário que tente burlar o sistema alterando o tipo do input.
 
     Args:
