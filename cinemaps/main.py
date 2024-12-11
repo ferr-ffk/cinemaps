@@ -113,7 +113,32 @@ def cadastro_post():
 
     return redirect(url_for(index.__name__))
     
+
+@app.route("/formulario_db")
+def pagina_criar_db():
+    return render_template("formulario_db.html")    
+
+
+@app.route("/formulario_db", methods=['post'])
+def pagina_criar_db_post():
+    resp = make_response(redirect(url_for(index.__name__)))
     
+    for field in request.form:
+        resp.set_cookie(field, request.form[field])
+
+    return resp
+
+
+@app.route("/cookies")
+def pagina_get_cookies():
+    c = [
+        request.cookies.get('host'),
+        request.cookies.get('usuario'),
+        request.cookies.get('banco'),
+        request.cookies.get('senha')
+    ]
+
+    return str(c)
 
 
 @app.route("/cinemas/<int:cinema>")
