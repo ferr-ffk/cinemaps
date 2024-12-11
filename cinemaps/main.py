@@ -1,4 +1,5 @@
 from flask import app, render_template, request, make_response, Flask, redirect, url_for, session, flash
+import requests
 
 from cinemaps.validacao import *
 
@@ -133,6 +134,37 @@ def filmes():
 @app.route("/filmes/<int:filme>")
 def filme(filme: int):
     return "Filme {}".format(filme)
+
+
+@app.route("/api/cinemas")
+def api_cinemas():
+    return [
+        {
+            "id": 1,
+            "nome": "tal"
+        },
+        {
+            "id": 2,
+            "nome": "x"
+        },
+        {
+            "id": 3,
+            "nome": "y"
+        },
+        {
+            "id": 4,
+            "nome": "z"
+        }
+    ]
+
+
+@app.route("/teste_api_cinemas")
+def teste_api_cinemas():
+    url = request.url_root + "api/cinemas"
+
+    c = requests.get(url)
+
+    return c.text
 
 
 @app.errorhandler(404)
