@@ -2,7 +2,7 @@ from flask import app, render_template, request, make_response, Flask, redirect,
 import requests
 
 from cinemaps.validacao import *
-import service.usuario
+from .service.usuario import *
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
 
@@ -175,7 +175,7 @@ def api_usuarios():
         "apelido": ""
     }
 
-    service.usuario.UsuarioService.criar_usuario(usuario)
+    UsuarioService.criar_usuario(usuario)
 
     return redirect(url_for(index.__name__))
 
