@@ -195,8 +195,7 @@ def api_usuarios():
     usuario = {
         "usuario": request.headers.get("usuario"),
         "senha": request.headers.get("senha"),
-        "email": request.headers.get("email"),
-        "apelido": ""
+        "email": request.headers.get("email")
     }
 
     UsuarioService.criar_usuario(usuario)
