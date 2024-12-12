@@ -102,6 +102,14 @@ def cadastro_post():
         
         return render_template("cadastro.html", erro=erro, tipo_erro="danger")
         
+    
+    nome_usuario_existe = len(select_from_tabela_por_condicao('usuario', f'WHERE usuario = \'{request.form['usuario']}\'')) > 0
+    
+    if nome_usuario_existe:
+        erro = "Esse nome de usuário já está em uso! Tente criar outro."
+        
+        return render_template("cadastro.html", erro=erro, tipo_erro="danger")
+        
         
     usuario = {
         "usuario": request.form['usuario'],
