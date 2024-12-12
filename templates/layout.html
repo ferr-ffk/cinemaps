@@ -273,36 +273,18 @@
             data: {
               type: "FeatureCollection",
               features: [
+              {% for cinema in cinemas %}
                 {
                   type: "Feature",
                   properties: {
-                    idCinema: "1284",
+                    idCinema: {{ cinema.id_cinema }},
                   },
                   geometry: {
                     type: "Point",
-                    coordinates: [-46.6174281585686, -23.543942899027343],
+                    coordinates: [{{ cinema.longitude }}, {{ cinema.latitude }}],
                   },
                 },
-                {
-                  type: "Feature",
-                  properties: {
-                    idCinema: "125125",
-                  },
-                  geometry: {
-                    type: "Point",
-                    coordinates: [-46.621201604070166, -23.524672887623936],
-                  },
-                },
-                {
-                  type: "Feature",
-                  properties: {
-                    idCinema: "4568",
-                  },
-                  geometry: {
-                    type: "Point",
-                    coordinates: [-46.66201974675158, -23.55660337207165],
-                  },
-                },
+              {% endfor %}
               ],
             },
           });
