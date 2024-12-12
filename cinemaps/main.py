@@ -1,4 +1,5 @@
 from flask import app, render_template, request, make_response, Flask, redirect, url_for, session, flash
+from flask_bcrypt import Bcrypt 
 import requests
 
 from cinemaps.validacao import *
@@ -6,6 +7,7 @@ from service.usuario import *
 from util.sql import criar_banco_cinemaps
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
+bcrypt = Bcrypt(app) 
 
 app.config['SECRET_KEY'] = '\xc3$Fg+\xeb\xb4T\xa4\x19~\xf1$\xbd_}^A\xfcOA_\x9c\xfb\xa3\xcbK\x05\xb9W\xe3\x04'
 
@@ -48,7 +50,9 @@ def login_post():
     
     usuario = usuarios_com_id[0]
     
-    if usuario['senha'] != request.form['senha']:
+    senha_valida = bcrypt.check_password_hash(usuario['senha'], request.form['senha']) 
+    
+    if not senha_valida:
         erro = "Senha incorreta. Tente novamente."
         
         return render_template("login.html", erro=erro, tipo_erro="danger")
@@ -102,7 +106,7 @@ def cadastro_post():
     usuario = {
         "usuario": request.form['usuario'],
         "email": request.form['email'],
-        "senha": request.form['senha'],
+        "senha": bcrypt.generate_password_hash(request.form['senha']).decode('utf-8'),
     }
 
     # Criar usuário no banco usando o fetch
