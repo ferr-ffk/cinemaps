@@ -6,3 +6,6 @@ class UsuarioService:
 
     def read_usuarios() -> Optional[list]:
         return select_from_tabela('Usuario')
+    
+    def read_usuario(campo: str, valor: str) -> Optional[list]:
+        return select_from_tabela_por_condicao('usuario', f'WHERE {campo} = \'{valor}\'')

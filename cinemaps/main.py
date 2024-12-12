@@ -39,7 +39,7 @@ def login():
 @app.route("/login", methods=['post'])
 def login_post():
     # Pegar id do usuário no banco
-    usuarios_com_id = select_from_tabela_por_condicao('usuario', f'WHERE email = \'{request.form['email']}\'')
+    usuarios_com_id = UsuarioService.read_usuario('email', request.form['email'])
     
     usuario_existe = len(usuarios_com_id) > 0
     
@@ -86,7 +86,7 @@ def cadastro_post():
     
     # Verificar se nome de usuário ou senha são válidos
     if not nome_usuario_valido(request.form['usuario']):
-        erro = "Nome de usuário invalido! Certifique-se que tem entre 6 e 16 caracteres e não inicia ou termina com números."
+        erro = "Nome de usuário invalido! Certifique-se que tem entre 3 e 16 caracteres e não inicia ou termina com números."
         
         return render_template("cadastro.html", erro=erro, tipo_erro="warning")
         
