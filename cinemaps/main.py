@@ -37,24 +37,29 @@ def login():
 @app.route("/login", methods=['post'])
 def login_post():
     # Pegar id do usuário no banco
-    usuario = select_from_tabela_por_condicao('usuario', f'WHERE email = \'{request.form['email']}\'')
+    usuarios_com_id = select_from_tabela_por_condicao('usuario', f'WHERE email = \'{request.form['email']}\'')
     
-    usuario_existe = len(usuario) > 0
+    usuario_existe = len(usuarios_com_id) > 0
     
     if not usuario_existe:
         erro = "Usuário não encontrado. Certifique-se de que o email foi digitado corretamente."
         
         return render_template("login.html", erro=erro, tipo_erro="warning")
     
-    usuario = usuario[0]
+    usuario = usuarios_com_id[0]
     
-    usuario = {
-        "email": request.form['email'],
+    if usuario['senha'] != request.form['senha']:
+        erro = "Senha incorreta. Tente novamente."
+        
+        return render_template("login.html", erro=erro, tipo_erro="danger")
+    
+    usuario_sessao = {
+        "email": usuario['email'],
         "usuario": usuario['usuario']
     }
     
     # Adicionar à sessão
-    for key in usuario:
+    for key in usuario_sessao:
         session[key] = usuario[key]
     
     return redirect(url_for(index.__name__))
