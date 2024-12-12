@@ -4,6 +4,7 @@ import requests
 
 from cinemaps.validacao import *
 from service.usuario import *
+from service.cinema import *
 from util.sql import criar_banco_cinemaps
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
@@ -11,8 +12,6 @@ bcrypt = Bcrypt(app)
 
 app.config['SECRET_KEY'] = '\xc3$Fg+\xeb\xb4T\xa4\x19~\xf1$\xbd_}^A\xfcOA_\x9c\xfb\xa3\xcbK\x05\xb9W\xe3\x04'
 
-
-criar_banco_cinemaps()
 
 
 @app.route("/sair")
@@ -28,7 +27,9 @@ def sair():
 def index():
     print(session)
     
-    return render_template("index.html")
+    cinemas = requests.get(request.url_root + "api/cinemas").json()
+    
+    return render_template("index.html", cinemas=cinemas)
 
 
 @app.route("/login")
@@ -178,24 +179,7 @@ def filme(filme: int):
 
 @app.route("/api/cinemas")
 def api_cinemas():
-    return [
-        {
-            "id": 1,
-            "nome": "tal"
-        },
-        {
-            "id": 2,
-            "nome": "x"
-        },
-        {
-            "id": 3,
-            "nome": "y"
-        },
-        {
-            "id": 4,
-            "nome": "z"
-        }
-    ]
+    return CinemaService.read_cinemas()
 
 
 @app.route("/api/usuarios", methods=['post', 'get'])
