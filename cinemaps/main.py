@@ -34,7 +34,9 @@ def index():
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    cinemas = requests.get(request.url_root + "api/cinemas").json()
+    
+    return render_template("login.html", cinemas=cinemas)
 
 
 @app.route("/login", methods=['post'])
@@ -159,12 +161,16 @@ def pagina_get_cookies():
 
 @app.route("/cinemas/<int:cinema>")
 def cinema(cinema: int):
-    return render_template("cinema.html", cinema=cinema)
+    cinemas = requests.get(request.url_root + "api/cinemas").json()
+    
+    return render_template("cinema.html", cinema=cinema, cinemas=cinemas)
 
 
 @app.route("/cinemas")
 def cinemas():
-    return "Cinemas"
+    cinemas = requests.get(request.url_root + "api/cinemas").json()
+    
+    return cinemas
 
 
 @app.route("/filmes")
