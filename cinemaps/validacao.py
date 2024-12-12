@@ -1,7 +1,7 @@
 import re
 
 # Entre 4 e 16 caracteres, não pode iniciar nem terminar com número ou underline
-USUARIO_REGEX = "^[A-Za-z][A-Za-z0-9_]{3,16}$"
+USUARIO_REGEX = "^(?=[a-zA-Z0-9._]{4,17}$)(?!.*[_.]{2})[^_.].*[^_.]$"
 
 # Mínimo de oito caracteres, ao menos uma letra, um número e um caractere especial
 SENHA_REGEX = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
