@@ -77,11 +77,12 @@
     </div>
 </div>
 
-<!-- Redefinição de zoom -->
-{% block zoom %}15{% endblock %}
-
-<!-- Redefinição do centro do mapa para centralizar no mapa -->
-{% block longitude_mapa %} {{ cinema.longitude }} {% endblock %}{% block latitude_mapa %} {{ cinema.latitude }} {% endblock %}
+<div class="d-none">
+    <!-- Redefinição de zoom -->
+    {% block zoom %}15{% endblock %}
+    <!-- Redefinição do centro do mapa para centralizar no mapa -->
+    {% block longitude_mapa %} {{ cinema.longitude }} {% endblock %}{% block latitude_mapa %} {{ cinema.latitude }} {% endblock %}
+</div>
 
 <script type="module">
     // Obtém o offcanvas e abre ele
