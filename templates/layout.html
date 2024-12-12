@@ -266,7 +266,7 @@
         map.on("load", async () => {
           // Add an image to use as a custom marker
           const image = await map.loadImage(
-            "https://maplibre.org/maplibre-gl-js/docs/assets/custom_marker.png"
+            "{{ url_for('static', filename='images/icone-cinema.png') }}"
           );
           map.addImage("custom-marker", image.data);
   
