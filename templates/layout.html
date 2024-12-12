@@ -256,8 +256,8 @@
         container: "map", // Id do container
         style:
           "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL", // Obtém o estilo padrão de mapa
-        // Coordenadas de sp
-        center: [-46.6388, -23.5489], // starting position [lng, lat]
+        // Coordenadas de sp padrão, mas na página de cinema elas serão redefinidas
+        center: [{% block longitude_mapa %} -46.6388 {% endblock %}, {% block latitude_mapa %} -23.5489 {% endblock %}], // starting position [lng, lat]
         zoom: 12, // Zoom inicial, no nível de cidade
       });
 

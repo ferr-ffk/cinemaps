@@ -76,6 +76,9 @@
     </div>
 </div>
 
+<!-- Redefinição do centro do mapa para centralizar no mapa -->
+{% block longitude_mapa %} {{ cinema.longitude }} {% endblock %}{% block latitude_mapa %} {{ cinema.latitude }} {% endblock %}
+
 <script type="module">
     // Obtém o offcanvas e abre ele
     var offCanvas = document.getElementById('cinema{{ cinema.id_cinema }}')
