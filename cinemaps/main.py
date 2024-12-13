@@ -161,7 +161,7 @@ def pagina_get_cookies():
 
 @app.route("/cinemas/<int:cinema>")
 def cinema(cinema: int):
-    cinema = requests.get(request.url_root + f"api/cinemas/{cinema}").json()[0]
+    cinema = requests.get(request.url_root + f"api/cinemas/{cinema}").json()
     
     cinemas = requests.get(request.url_root + "api/cinemas").json()
     
@@ -192,7 +192,7 @@ def api_cinemas():
 
 @app.route("/api/cinemas/<int:cinema>")
 def api_cinema(cinema: int):
-    return CinemaService.read_cinema("id_cinema", cinema)
+    return CinemaService.read_cinema("id_cinema", cinema)[0]
 
 
 @app.route("/api/usuarios", methods=['post', 'get'])
