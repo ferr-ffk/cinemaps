@@ -66,13 +66,11 @@ def criar_banco_cinemaps() -> None:
         """
         CREATE DATABASE IF NOT EXISTS Cinemaps;
         USE Cinemaps;
-
-
-
+        
         CREATE TABLE IF NOT EXISTS Cinema (
             id_cinema INT AUTO_INCREMENT PRIMARY KEY,
             nome VARCHAR(100) NOT NULL,
-            fonte TEXT,
+            foto TEXT,
             descricao TEXT,
             latitude DECIMAL(9,6) NOT NULL,
             longitude DECIMAL(9,6) NOT NULL
