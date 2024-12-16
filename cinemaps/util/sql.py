@@ -57,6 +57,28 @@ def insert_into_tabela(d: dict, tabela: str) -> None:
     fechar_conexao(conexao)
 
 
+def inserir_cinemas() -> None:
+    conexao = criar_conexao_padrao()
+    
+    cursor = conexao.cursor(dictionary=True)
+    
+    cursor.execute("use cinemaps")
+    
+    cursor.execute("delete from cinema;")
+    
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Moviecom PrudenShopping\", \"Cinema do PrudenShopping, perto da Mara Cakes no piso térreo.\", -22.1157178,-51.4080938);")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping Pátio Higienópolis\", \"Cinema do Shopping Pátio Higienópolis\", -23.5417993, -46.6810528)")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Lar Center\", \"Cinema do Lar Center\", -23.521666, -46.6293459)")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping Metrô Santa Cruz\", \"Cinema do Shopping Metrô Santa Cruz, encontrada depois da escada rolante da praça de alimentação, no último andar.\", -23.5989718, -46.637118)")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping Center Norte\", \"Cinema do Shopping Center Norte, Localizada na escada rolante ao lado do Madero e atrás da Renner.\", -23.521666, -46.6293459)")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping D\", \"Cinema do Shopping D, localizada no Piso G2, em frente aos elevadores.\", -23.521666, -46.6293459)")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping Metrô Tucuruvi\", \"Cinema do Shopping Metrô Tucuruvi, acessado no piso L5, ao lado do Jhonny Rockets.\", -23.4802294, -46.6032211)")
+    
+    conexao.commit()
+    
+    fechar_conexao(conexao)
+
+
 def criar_banco_cinemaps() -> None:
     conexao = criar_conexao_padrao()
     
