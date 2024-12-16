@@ -173,7 +173,7 @@ def cinema(cinema: int):
 def cinemas():
     cinemas = requests.get(request.url_root + "api/cinemas").json()
     
-    return cinemas
+    return render_template("cinemas.html", cinemas=cinemas)
 
 
 @app.route("/filmes")
