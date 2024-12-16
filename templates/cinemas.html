@@ -1,0 +1,58 @@
+{% extends "layout.html" %} 
+
+{% block info_mapa %}{% endblock %}
+
+{% block children %}
+
+<main class="p-4">
+  <div class="d-flex align-items-center py-3 border-bottom border-1">
+    <button
+      class="col-2 border-0 bg-transparent h-100"
+      type="button"
+      aria-controls="menu-lateral"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#menu-lateral"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="35"
+        height="35"
+        fill="currentColor"
+        class="bi bi-list"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+        />
+      </svg>
+    </button>
+
+    <h1 class="m-0">Cinemas</h1>
+  </div>
+
+  <ul class="py-4 px-0 m-0">
+      {% for cinema in cinemas %}
+        <li class="d-flex flex-row p-1 justify-content-evenly">
+            <div class="col-2 bg-secondary border border-0 rounded" style="max-width: 4rem; height: 4rem;">
+                {% if cinema.foto %}
+                    <figure style="overflow: hidden; height: 100%; width: 100%" class="border border-0 rounded">
+                        <img style="height: 100%; width: 100%; object-fit: cover;" src="https://placehold.co/600x300/png" alt="">
+                    </figure>
+                {% else %}
+                    <img src="{{ cinema.foto }}" alt="">
+                {% endif %}
+            </div>
+            <div class="col-8 d-flex flex-column">
+                <a style="color: currentColor" class="text-decoration-none" href="/cinemas/{{ cinema.id_cinema }}">
+                    <h2 class="fs-2">{{ cinema.nome }}</h2>
+                    <p>{{ cinema.descricao }}</p>
+                </a>
+            </div>
+        </li>
+      {% endfor %}
+  </ul>
+</main>
+
+{% endblock %}
+{% block script_mapa %}{% endblock %}
