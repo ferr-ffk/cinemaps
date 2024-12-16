@@ -26,5 +26,5 @@ def fechar_conexao(con: MySQLConnection) -> None:
     con.close()
 
 
-def criar_conexao_padrao() -> None:
+def criar_conexao_padrao() -> MySQLConnection:
     return abrir_conexao('localhost', 'root', '123456', 'Cinemaps')
