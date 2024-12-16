@@ -254,6 +254,7 @@
     ></script>
     <!-- É necessário declarar o script como module para obter todas as classes do MapLibre -->
     <script type="module">
+      {% block script_mapa %}
       var map = new maplibregl.Map({
         container: "map", // Id do container
         style:
@@ -330,6 +331,7 @@
             }),
           'bottom-left'
       );
+    {% endblock %}
     </script>
   </body>
 </html>
