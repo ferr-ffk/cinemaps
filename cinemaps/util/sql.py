@@ -66,13 +66,13 @@ def inserir_cinemas() -> None:
     
     cursor.execute("delete from cinema;")
     
-    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Moviecom PrudenShopping\", \"Cinema do PrudenShopping, perto da Mara Cakes no piso térreo.\", -22.1157178,-51.4080938);")
-    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping Pátio Higienópolis\", \"Cinema do Shopping Pátio Higienópolis\", -23.5417993, -46.6810528)")
-    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Lar Center\", \"Cinema do Lar Center\", -23.521666, -46.6293459)")
-    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping Metrô Santa Cruz\", \"Cinema do Shopping Metrô Santa Cruz, encontrada depois da escada rolante da praça de alimentação, no último andar.\", -23.5989718, -46.637118)")
-    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping Center Norte\", \"Cinema do Shopping Center Norte, Localizada na escada rolante ao lado do Madero e atrás da Renner.\", -23.521666, -46.6293459)")
-    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping D\", \"Cinema do Shopping D, localizada no Piso G2, em frente aos elevadores.\", -23.521666, -46.6293459)")
-    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude) VALUES (\"Cinemark Shopping Metrô Tucuruvi\", \"Cinema do Shopping Metrô Tucuruvi, acessado no piso L5, ao lado do Jhonny Rockets.\", -23.4802294, -46.6032211)")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Moviecom PrudenShopping\", \"Cinema do PrudenShopping, perto da Mara Cakes no piso térreo.\", -22.1157178,-51.4080938, \"\");")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Cinemark Shopping Pátio Higienópolis\", \"Cinema do Shopping Pátio Higienópolis\", -23.5417993, -46.6810528, \"\")")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Lar Center\", \"Cinema do Lar Center\", -23.521666, -46.6293459, \"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjQsU8cJSvqrTwZzyyKG3NUBlP6Qu7UtL04asMm9z6agBwMU6oSVvBytv3HNy55D7rjCVzK4YzfT2yFzN9kYQezWQzXRuTC8t9KDK-ymH6knClpsaIfwt14thcGoO4fN2KdycVtw_0Y7lRp/s1600/IMG_6597.JPG\")")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Cinemark Shopping Metrô Santa Cruz\", \"Cinema do Shopping Metrô Santa Cruz, encontrada depois da escada rolante da praça de alimentação, no último andar.\", -23.5989718, -46.637118, \"https://upload.wikimedia.org/wikipedia/commons/d/d9/Cinemark_Metr%C3%B4_Santa_Cruz_-_sagu%C3%A3o_e_auto_atendimento.jpg\")")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Cinemark Shopping Center Norte\", \"Cinema do Shopping Center Norte, Localizada na escada rolante ao lado do Madero e atrás da Renner.\", -23.521666, -46.6293459, \"https://www.infomoney.com.br/wp-content/uploads/2019/06/cinemark-1.jpg?fit=720%2C480&quality=50&strip=all\")")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Cinemark Shopping D\", \"Cinema do Shopping D, localizada no Piso G2, em frente aos elevadores.\", -23.521666, -46.6293459, \"https://shoppingd.com.br/wp-content/uploads/2024/06/cine.png\")")
+    cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Cinemark Shopping Metrô Tucuruvi\", \"Cinema do Shopping Metrô Tucuruvi, acessado no piso L5, ao lado do Jhonny Rockets.\", -23.4802294, -46.6032211, \"\")")
     
     conexao.commit()
     
