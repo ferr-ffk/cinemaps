@@ -1,3 +1,4 @@
+import json
 from flask import app, render_template, request, make_response, Flask, redirect, url_for, session, flash
 from flask_bcrypt import Bcrypt 
 import requests
@@ -5,6 +6,8 @@ import requests
 from cinemaps.validacao import *
 from service.usuario import *
 from service.cinema import *
+from service.sessao import *
+from service.filme import *
 from util.sql import criar_banco_cinemaps
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
@@ -12,9 +15,9 @@ bcrypt = Bcrypt(app)
 
 app.config['SECRET_KEY'] = '\xc3$Fg+\xeb\xb4T\xa4\x19~\xf1$\xbd_}^A\xfcOA_\x9c\xfb\xa3\xcbK\x05\xb9W\xe3\x04'
 
-# criar_banco_cinemaps()
-# inserir_cinemas()
-# inserir_sessoes_filmes()
+criar_banco_cinemaps()
+inserir_cinemas()
+inserir_sessoes_filmes()
 
 
 @app.route("/sair")
@@ -195,6 +198,16 @@ def filmes():
 @app.route("/filmes/<int:filme>")
 def filme(filme: int):
     return "Filme {}".format(filme)
+
+
+@app.route("/api/filmes")
+def api_filmes():
+    return FilmeService.read_filmes()
+
+
+@app.route("/api/sessoes")
+def api_sessoes():
+    return SessaoService.read_sessoes()
 
 
 @app.route("/api/cinemas")
