@@ -69,6 +69,13 @@ def login_post():
     # Adicionar à sessão
     for key in usuario_sessao:
         session[key] = usuario[key]
+        
+        # Usa as coordenadas de SP como referência
+        longitude_usuario, latitude_usuario = -46.6388, -23.5489        
+        
+        # Salva essas informações na sessão
+        session['longitude'] = longitude_usuario
+        session['latitude'] = latitude_usuario
     
     return redirect(url_for(index.__name__))
 
@@ -194,10 +201,10 @@ def api_cinemas():
     
     if request.args.get("ordernar") == "localizacao":
         # TODO: Obter localização do usuário
-        x, y = 0, 0
+        latitude, longitude = session['latitude'], session['longitude']
         
         # TODO: Ordenar os cinemas pela distância até o usuário
-        cinemas_banco = sorted(cinemas_banco, key=lambda p: (p.latitude - x)**2 + (p.longitude - y)**2)
+        cinemas_banco = sorted(cinemas_banco, key=lambda c: (c.latitude - latitude)**2 + (c.longitude - longitude)**2)
     
     return cinemas_banco
 
