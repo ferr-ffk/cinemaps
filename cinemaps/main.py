@@ -178,9 +178,11 @@ def cinema(cinema: int):
     
     cinemas = requests.get(request.url_root + "api/cinemas").json()
 
-    sessoes = requests.get(request.url_root + f"api/sessoes_por_filme/{cinema}").json()
+    sessoes = requests.get(request.url_root + f"api/sessoes_por_cinema/{cinema}").json()
+
+    filmes = requests.get(request.url_root + "api/filmes").json()
     
-    return render_template("cinema.html", cinema=c, cinemas=cinemas, sessoes=sessoes)
+    return render_template("cinema.html", cinema=c, cinemas=cinemas, sessoes=sessoes, filmes=filmes)
 
 
 @app.route("/cinemas")
@@ -217,8 +219,8 @@ def api_sessoes():
     return SessaoService.read_sessoes()
 
 
-@app.route("/api/sessoes_por_filme/<int:id_cinema>")
-def api_filme_sessoes(id_cinema: int):
+@app.route("/api/sessoes_por_cinema/<int:id_cinema>")
+def api_sessoes_filme(id_cinema: int):
     return SessaoService.read_sessoes_por_condicao('id_cinema', id_cinema)
 
 
