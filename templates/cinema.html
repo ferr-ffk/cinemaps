@@ -20,7 +20,13 @@
         </div>
     </div>
     <div class="offcanvas-body p-0">
-        <img class="img-fluid mx-auto d-block" src="https://placehold.co/800x400/png" alt="imagem">
+        <figure class="w-100" style="min-height: 30dvh;">
+            {% if cinema.foto %}
+                <img style="height: 100%; width: 100%; object-fit: cover;" class="img-fluid d-block" src="{{ cinema.foto }}" alt="imagem">
+            {% else %}    
+                <img style="height: 100%; width: 100%; object-fit: cover;" class="img-fluid d-block" src="https://placehold.co/800x400/png" alt="imagem">
+            {% endif %}
+        </figure>
         <div class="p-3 border-bottom d-flex flex-row justify-content-between align-items-center">
             <div class="flex-grow-1 col-8">
                 <p class="fs-1">
