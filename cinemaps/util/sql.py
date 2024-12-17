@@ -76,18 +76,31 @@ def inserir_sessoes_filmes() -> None:
 
     # cursor.execute("USE Cinemaps;")
 
-    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (1, 2, \"2025-05-25 14:55:00\");")
-    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (2, 1, \"2025-04-29 17:50:00\");")
-    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (3, 2, \"2025-01-17 16:30:00\");")
-    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (5, 2, \"2024-12-29 18:55:00\");")
-    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (4, 1, \"2024-12-22 19:00:00\");")
-    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (7, 2, \"2025-03-30 11:00:00\");")
-    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (6, 2, \"2025-02-23 12:00:00\");")
-
     # conexao.commit()
 
     fechar_conexao(conexao)
 
+    inserir_sessoes()
+
+
+def inserir_sessoes() -> None:
+    conexao = criar_conexao_padrao()
+
+    cursor = conexao.cursor(dictionary=True)
+
+    cursor.execute("USE Cinemaps;")
+    
+    cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (1, 2, \"2025-05-25 14:55:00\");")
+    cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (2, 1, \"2025-04-29 17:50:00\");")
+    cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (3, 2, \"2025-01-17 16:30:00\");")
+    cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (5, 2, \"2024-12-29 18:55:00\");")
+    cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (4, 1, \"2024-12-22 19:00:00\");")
+    cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (7, 2, \"2025-03-30 11:00:00\");")
+    cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (6, 2, \"2025-02-23 12:00:00\");")
+
+    conexao.commit()
+
+    fechar_conexao(conexao)
 
 
 def inserir_cinemas() -> None:
