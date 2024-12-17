@@ -18,11 +18,10 @@ CineMaps é uma plataforma de integração de diversos serviços fornecidos por 
 
 ## ⏰ Roteiro de Desenvolvimento
 
-- [ ] Criação de classes modelo
 - [X] Criação de páginas em HTML
 - [X] Página de Cadastro/Login
 - [X] Página Principal
-- [ ] Página de Cinema
+- [X] Página de Cinema
 - [ ] Página de Filmes em exibição
 - [X] Indexação com Python em Flask
 - [X] Integração com o servidor com MySQL Connector
