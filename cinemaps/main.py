@@ -133,6 +133,13 @@ def cadastro_post():
         "email": request.form['email'],
         "senha": bcrypt.generate_password_hash(request.form['senha']).decode('utf-8'),
     }
+    
+    # Usa as coordenadas de SP como referência
+    longitude_usuario, latitude_usuario = -46.6388, -23.5489        
+    
+    # Salva essas informações na sessão
+    session['longitude'] = longitude_usuario
+    session['latitude'] = latitude_usuario
 
     # Criar usuário no banco usando o fetch
     requests.post(request.url_root + "api/usuarios", headers=usuario)
@@ -229,12 +236,14 @@ def api_sessoes_filme(id_cinema: int):
 def api_cinemas():
     cinemas_banco = CinemaService.read_cinemas()
     
-    if request.args.get("ordernar") == "localizacao":
+    ordenar = request.args.get('ordenar')
+    
+    if ordenar:
         # TODO: Obter localização do usuário
         latitude, longitude = session['latitude'], session['longitude']
         
         # TODO: Ordenar os cinemas pela distância até o usuário
-        cinemas_banco = sorted(cinemas_banco, key=lambda c: (c.latitude - latitude)**2 + (c.longitude - longitude)**2)
+        cinemas_banco = sorted(cinemas_banco, key=lambda c: (float(c['latitude']) - latitude)**2 + (float(c['longitude']) - longitude)**2)
     
     return cinemas_banco
 
