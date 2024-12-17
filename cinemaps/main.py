@@ -34,9 +34,9 @@ def sair():
 def index():
     print(session)
     
-    cinemas = requests.get(request.url_root + "api/cinemas").json()
+    c = requests.get(request.url_root + "api/cinemas").json()
     
-    return render_template("index.html", cinemas=cinemas)
+    return render_template("index.html", cinemas=c)
 
 
 @app.route("/login")
@@ -199,7 +199,7 @@ def cinemas():
     # Essa requisição dá erro por algum motivo...
     # cinemas = requests.get(request.url_root + "api/cinemas", params={"ordenar": "localizacao"}).json()
     
-    cinemas = requests.get(request.url_root + "api/cinemas").json()
+    cinemas = requests.get(request.url_root + "api/cinemas", params={"ordenar": "localizacao"}).json()
     
     cinema = request.args.get("cinema")
     
@@ -239,14 +239,18 @@ def api_sessoes_filme(id_cinema: int):
 @app.route("/api/cinemas")
 def api_cinemas():
     cinemas_banco = CinemaService.read_cinemas()
+    latitude = -23.5489
+    longitude = -46.6388
     
-    # FIXME: Isso aqui dá erro quando é feito por uma requisição do requests...
-    if request.args.get('ordenar', 'adw'):
-        latitude, longitude = session['latitude'], session['longitude']
-        
-        return list(sorted(cinemas_banco, key=lambda c: (float(c['latitude']) - latitude)**2 + (float(c['longitude']) - longitude)**2))
+    # O problema é que tentar obter uma chave da session lançava um erro e o flask não captava... mas o requests dava erro por que a resposta não era umm json válido
+    if session:
+        latitude = session['latitude']
+        longitude = session['longitude']
     
-    return list(sorted(cinemas_banco, key=lambda c: (float(c['latitude']) - latitude)**2 + (float(c['longitude']) - longitude)**2))
+    if request.args.get('ordenar') == 'localizacao':
+        cinemas_banco = sorted(cinemas_banco, key=lambda c: (float(c['latitude']) - latitude)**2 + (float(c['longitude']) - longitude)**2)
+    
+    return cinemas_banco
 
 
 @app.route("/api/cinemas/<int:cinema>")
