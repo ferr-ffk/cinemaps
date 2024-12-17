@@ -322,16 +322,22 @@
         });
       });
 
+      const geolocate = new maplibregl.GeolocateControl({
+        positionOptions: {
+            enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+      });
+
       // Pede acesso à localização do usuário e centraliza o mapa nessa posição
       map.addControl(
-          new maplibregl.GeolocateControl({
-              positionOptions: {
-                  enableHighAccuracy: true
-              },
-              trackUserLocation: true,
-            }),
+          geolocate,
           'bottom-left'
       );
+
+      map.on('load', () => {
+        geolocate.trigger();
+      });
     {% endblock %}
     </script>
   </body>
