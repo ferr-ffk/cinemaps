@@ -49,6 +49,7 @@ def login():
 @app.route("/login", methods=['post'])
 def login_post():
     # Pegar id do usuário no banco
+    # TODO: Pegar do fetch ne
     usuarios_com_id = UsuarioService.read_usuario('email', request.form['email'])
     
     usuario_existe = len(usuarios_com_id) > 0
@@ -195,7 +196,10 @@ def cinema(cinema: int):
 
 @app.route("/cinemas")
 def cinemas():
-    cinemas = requests.get(request.url_root + "api/cinemas", params={"ordenar": "localizacao"}).json()
+    # Essa requisição dá erro por algum motivo...
+    # cinemas = requests.get(request.url_root + "api/cinemas", params={"ordenar": "localizacao"}).json()
+    
+    cinemas = requests.get(request.url_root + "api/cinemas").json()
     
     cinema = request.args.get("cinema")
     
@@ -236,14 +240,13 @@ def api_sessoes_filme(id_cinema: int):
 def api_cinemas():
     cinemas_banco = CinemaService.read_cinemas()
     
-    ordenar = request.args.get('ordenar')
-    
-    if ordenar:
+    # FIXME: Isso aqui dá erro quando é feito por uma requisição do requests...
+    if request.args.get('ordenar', 'adw'):
         latitude, longitude = session['latitude'], session['longitude']
         
-        cinemas_banco = sorted(cinemas_banco, key=lambda c: (float(c['latitude']) - latitude)**2 + (float(c['longitude']) - longitude)**2)
+        return list(sorted(cinemas_banco, key=lambda c: (float(c['latitude']) - latitude)**2 + (float(c['longitude']) - longitude)**2))
     
-    return cinemas_banco
+    return list(sorted(cinemas_banco, key=lambda c: (float(c['latitude']) - latitude)**2 + (float(c['longitude']) - longitude)**2))
 
 
 @app.route("/api/cinemas/<int:cinema>")
