@@ -207,6 +207,11 @@ def api_filmes():
     return FilmeService.read_filmes()
 
 
+@app.route("/api/filmes/<int:filme>")
+def api_filme(filme: int):
+    return FilmeService.read_filme('id_filme', filme)[0]
+
+
 @app.route("/api/sessoes")
 def api_sessoes():
     return SessaoService.read_sessoes()
