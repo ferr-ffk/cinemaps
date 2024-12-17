@@ -36,7 +36,7 @@ def select_from_tabela(tabela: str) -> Optional[list]:
 def select_from_tabela_por_condicao(tabela: str, condicao: str) -> Optional[list]:
     conexao = criar_conexao_padrao()
     
-    r = executar_sql(conexao, f'SELECT * FROM {tabela} {condicao}')
+    r = executar_sql(conexao, f'SELECT * FROM {tabela} WHERE {condicao}')
 
     fechar_conexao(conexao)
     

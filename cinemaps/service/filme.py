@@ -10,4 +10,4 @@ class FilmeService:
         return select_from_tabela(NOME_TABELA)
 
     def read_filme(campo: str, valor: str) -> Optional[list]:
-        return select_from_tabela_por_condicao(NOME_TABELA, f'WHERE {campo} = \'{valor}\'')
+        return select_from_tabela_por_condicao(NOME_TABELA, f'{campo} = \'{valor}\'')

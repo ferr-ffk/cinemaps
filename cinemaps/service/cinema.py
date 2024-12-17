@@ -8,4 +8,4 @@ class CinemaService:
         return select_from_tabela('Cinema')
 
     def read_cinema(campo: str, valor: str) -> Optional[list]:
-        return select_from_tabela_por_condicao('Cinema', f'WHERE {campo} = \'{valor}\'')
+        return select_from_tabela_por_condicao('Cinema', f'{campo} = \'{valor}\'')
