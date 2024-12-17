@@ -57,7 +57,7 @@ def insert_into_tabela(d: dict, tabela: str) -> None:
     fechar_conexao(conexao)
 
 
-def inserir_sessoes_filmes() -> None:
+def inserir_filmes_generos() -> None:
     conexao = criar_conexao_padrao()
 
     cursor = conexao.cursor(dictionary=True)
@@ -73,14 +73,8 @@ def inserir_sessoes_filmes() -> None:
     cursor.execute("INSERT INTO Filme (descricao, titulo, duracao, id_genero, foto) VALUES (\"Quatro jogadores vão parar em um mundo místico, onde um veterano os ensina o básico para sobrevivência nesse mundo\", \"Minecraft: Um Filme\", \"01:53:40\", 2, \"https://pt.minecraft.wiki/images/thumb/A_Minecraft_Movie_Teaser_Poster.jpg/300px-A_Minecraft_Movie_Teaser_Poster.jpg?9e74d\");")
 
     conexao.commit()
-
-    # cursor.execute("USE Cinemaps;")
-
-    # conexao.commit()
-
+    
     fechar_conexao(conexao)
-
-    inserir_sessoes()
 
 
 def inserir_sessoes() -> None:
@@ -89,6 +83,20 @@ def inserir_sessoes() -> None:
     cursor = conexao.cursor(dictionary=True)
 
     cursor.execute("USE Cinemaps;")
+    
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS Sessao (
+            id_sessao INT AUTO_INCREMENT PRIMARY KEY,
+            id_cinema INT NOT NULL,
+            id_filme INT NOT NULL,
+            data_horario DATETIME NOT NULL,
+            ativa BOOLEAN DEFAULT TRUE,
+            FOREIGN KEY (id_cinema) REFERENCES Cinema(id_cinema),
+            FOREIGN KEY (id_filme) REFERENCES Filme(id_filme)
+        );
+    """)
+    
+    conexao.commit()
     
     cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (1, 2, \"2025-05-25 14:55:00\");")
     cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (2, 1, \"2025-04-29 17:50:00\");")
@@ -109,8 +117,6 @@ def inserir_cinemas() -> None:
     cursor = conexao.cursor(dictionary=True)
     
     cursor.execute("USE Cinemaps;")
-    
-    cursor.execute("DELETE FROM Cinema;")
     
     cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Moviecom PrudenShopping\", \"Cinema do PrudenShopping, perto da Mara Cakes no piso térreo.\", -22.1157178,-51.4080938, \"https://fastly.4sqi.net/img/general/600x600/QPnQ0Own-cNSgDFewC1fRcrznXfoEUH1WqZp7xi-AsE.jpg\");")
     cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Cinemark Shopping Pátio Higienópolis\", \"Cinema do Shopping Pátio Higienópolis\", -23.5417993, -46.6810528, \"https://www.boletimnerd.com.br/wp-content/uploads/2024/02/semana-do-cinema-shopping-patio-higienopolis.jpg\")")
@@ -152,7 +158,7 @@ def criar_banco_cinemaps() -> None:
             latitude DECIMAL(9,6) NOT NULL,
             longitude DECIMAL(9,6) NOT NULL
         );
-
+        
 
         CREATE TABLE IF NOT EXISTS Genero (
             id_genero INT AUTO_INCREMENT PRIMARY KEY,
@@ -178,18 +184,6 @@ def criar_banco_cinemaps() -> None:
             apelido VARCHAR(50),
             senha VARCHAR(255) NOT NULL
         );
-
-
-        CREATE TABLE IF NOT EXISTS Sessao (
-            id_sessao INT AUTO_INCREMENT PRIMARY KEY,
-            id_cinema INT NOT NULL,
-            id_filme INT NOT NULL,
-            data_horario DATETIME NOT NULL,
-            ativa BOOLEAN DEFAULT TRUE,
-            FOREIGN KEY (id_cinema) REFERENCES Cinema(id_cinema),
-            FOREIGN KEY (id_filme) REFERENCES Filme(id_filme)
-        );
-
 
         CREATE TABLE IF NOT EXISTS Avaliacao (
             id_avaliacao INT AUTO_INCREMENT PRIMARY KEY,
