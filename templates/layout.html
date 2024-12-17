@@ -256,14 +256,14 @@
     <!-- É necessário declarar o script como module para obter todas as classes do MapLibre -->
     <script type="module">
       {% block script_mapa %}
-      var map = new maplibregl.Map({
-        container: "map", // Id do container
-        style:
-          "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL", // Obtém o estilo padrão de mapa
-        // Coordenadas de sp padrão, mas na página de cinema elas serão redefinidas
-        center: [{% block longitude_mapa %}-46.6388{% endblock %}, {% block latitude_mapa %}-23.5489{% endblock %}], // starting position [lng, lat]
-        zoom: {% block zoom %}12{% endblock %}, // Zoom inicial, no nível de cidade
-      });
+        var map = new maplibregl.Map({
+          container: "map", // Id do container
+          style:
+            "https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL", // Obtém o estilo padrão de mapa
+          // Coordenadas de sp padrão, mas na página de cinema elas serão redefinidas
+          center: [{% block longitude_mapa %}-46.6388{% endblock %}, {% block latitude_mapa %}-23.5489{% endblock %}], // starting position [lng, lat]
+          zoom: {% block zoom %}12{% endblock %}, // Zoom inicial, no nível de cidade
+        });
 
         map.on("load", async () => {
           // Add an image to use as a custom marker
@@ -331,13 +331,9 @@
 
       // Pede acesso à localização do usuário e centraliza o mapa nessa posição
       map.addControl(
-          geolocate,
-          'bottom-left'
+        geolocate,
+        'bottom-left'
       );
-
-      map.on('load', () => {
-        geolocate.trigger();
-      });
     {% endblock %}
     </script>
   </body>
