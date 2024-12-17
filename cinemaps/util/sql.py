@@ -62,9 +62,9 @@ def inserir_cinemas() -> None:
     
     cursor = conexao.cursor(dictionary=True)
     
-    cursor.execute("use cinemaps")
+    cursor.execute("USE Cinemaps;")
     
-    cursor.execute("delete from cinema;")
+    cursor.execute("DELETE FROM Cinema;")
     
     cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Moviecom PrudenShopping\", \"Cinema do PrudenShopping, perto da Mara Cakes no piso térreo.\", -22.1157178,-51.4080938, \"\");")
     cursor.execute("INSERT INTO Cinema(nome, descricao, latitude, longitude, foto) VALUES (\"Cinemark Shopping Pátio Higienópolis\", \"Cinema do Shopping Pátio Higienópolis\", -23.5417993, -46.6810528, \"\")")
@@ -83,6 +83,8 @@ def criar_banco_cinemaps() -> None:
     conexao = criar_conexao_padrao()
     
     cursor = conexao.cursor(dictionary=True)
+
+    print("Teste")
     
     cursor.execute(
         """

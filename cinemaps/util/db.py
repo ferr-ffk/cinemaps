@@ -27,4 +27,4 @@ def fechar_conexao(con: MySQLConnection) -> None:
 
 
 def criar_conexao_padrao() -> MySQLConnection:
-    return abrir_conexao('localhost', 'root', '123456', 'Cinemaps')
+    return abrir_conexao('localhost', 'estudante1', '123456', 'Cinemaps')
