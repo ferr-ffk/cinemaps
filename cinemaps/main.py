@@ -49,7 +49,7 @@ def login():
 @app.route("/login", methods=['post'])
 def login_post():
     # Pegar id do usuário no banco
-    usuarios_com_id = requests.get(request.url_root + "api/usuarios").json()
+    usuarios_com_id = requests.get(request.url_root + f"api/usuarios_com_email/{request.form['email']}").json()
     
     usuario_existe = len(usuarios_com_id) > 0
     
@@ -274,6 +274,21 @@ def api_usuarios_post():
 @app.route("/api/usuarios")
 def api_usuarios():
     return UsuarioService.read_usuarios()
+
+
+@app.route("/api/usuarios/<int:id>")
+def api_usuario(id: int):
+    return UsuarioService.read_usuario('id_usuario', id)
+
+
+@app.route("/api/usuarios_com_nome/<nome_usuario>")
+def api_usuario_por_nome_usuario(nome_usuario: str):
+    return UsuarioService.read_usuario('usuario', nome_usuario)
+
+
+@app.route("/api/usuarios_com_email/<email>")
+def api_usuario_por_email(email: str):
+    return UsuarioService.read_usuario('email', email)
 
 
 @app.errorhandler(404)
