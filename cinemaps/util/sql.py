@@ -57,6 +57,30 @@ def insert_into_tabela(d: dict, tabela: str) -> None:
     fechar_conexao(conexao)
 
 
+def inserir_genero_filmes() -> None:
+    conexao = criar_conexao_padrao()
+    
+    cursor = conexao.cursor(dictionary=True)
+    
+    cursor.execute("Insert into Genero (nome) values (\"Terror\");")
+    cursor.execute("Insert into Genero (nome) values (\"Live Action\");")
+
+    cursor.execute("Insert into Filme (descricao, titulo, duracao, id_genero) values (\"Um homem, desesperado por dinheiro para ajudar a sua irmã, aceita uma vaga de emprego de segurança noturno em uma antiga pizzaria, mas mal sabe ele a história por trás de de tal pizzaria e o que o aguarda\", \"Five Nights at Freddy: O Pesadelo sem Fim\", \"01:50:00\", 1);")
+    cursor.execute("Insert into Filme (descricao, titulo, duracao, id_genero) values (\"Quatro jogadores vão parar em um mundo místico, onde um veterano os ensina o básico para sobrevivência nesse mundo\", \"Minecraft: Um Filme\", \"01:53:40\", 2);")
+
+    cursor.execute("Insert into Sessao (id_cinema, id_filme, data_horario) values (1, 2, \"2025-05-25 14:55:00\");")
+    cursor.execute("Insert into Sessao (id_cinema, id_filme, data_horario) values (2, 1, \"2025-04-29 17:50:00\");")
+    cursor.execute("Insert into Sessao (id_cinema, id_filme, data_horario) values (3, 2, \"2025-01-17 16:30:00\");")
+    cursor.execute("Insert into Sessao (id_cinema, id_filme, data_horario) values (5, 2, \"2024-12-29 18:55:00\");")
+    cursor.execute("Insert into Sessao (id_cinema, id_filme, data_horario) values (4, 1, \"2024-12-22 19:00:00\");")
+    cursor.execute("Insert into Sessao (id_cinema, id_filme, data_horario) values (7, 2, \"2025-03-30 11:00:00\");")
+    cursor.execute("Insert into Sessao (id_cinema, id_filme, data_horario) values (6, 2, \"2025-02-23 12:00:00\");")
+    
+    conexao.commit()
+    
+    fechar_conexao(conexao)
+
+
 def inserir_cinemas() -> None:
     conexao = criar_conexao_padrao()
     
