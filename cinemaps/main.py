@@ -190,7 +190,16 @@ def filme(filme: int):
 
 @app.route("/api/cinemas")
 def api_cinemas():
-    return CinemaService.read_cinemas()
+    cinemas_banco = CinemaService.read_cinemas()
+    
+    if request.args.get("ordernar") == "localizacao":
+        # TODO: Obter localização do usuário
+        x, y = 0, 0
+        
+        # TODO: Ordenar os cinemas pela distância até o usuário
+        cinemas_banco = sorted(cinemas_banco, key=lambda p: (p.latitude - x)**2 + (p.longitude - y)**2)
+    
+    return cinemas_banco
 
 
 @app.route("/api/cinemas/<int:cinema>")
