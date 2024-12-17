@@ -43,7 +43,7 @@ def select_from_tabela_por_condicao(tabela: str, condicao: str) -> Optional[list
     return r
 
 
-def insert_into_tabela(d: dict, tabela: str) -> None:
+def INSERT_INTO_tabela(d: dict, tabela: str) -> None:
     conexao = criar_conexao_padrao()
 
     campos = ', '.join([key for key in d])
@@ -55,6 +55,39 @@ def insert_into_tabela(d: dict, tabela: str) -> None:
     executar_sql(conexao, sql)
 
     fechar_conexao(conexao)
+
+
+def inserir_sessoes_filmes() -> None:
+    conexao = criar_conexao_padrao()
+
+    cursor = conexao.cursor(dictionary=True)
+
+    cursor.execute("USE Cinemaps;")
+
+    cursor.execute("INSERT INTO Genero (nome) VALUES (\"Terror\");")
+    cursor.execute("INSERT INTO Genero (nome) VALUES (\"Live Action\");")
+
+    conexao.commit()
+
+    cursor.execute("INSERT INTO Filme (descricao, titulo, duracao, id_genero, foto) VALUES (\"Um homem, desesperado por dinheiro para ajudar a sua irmã, aceita uma vaga de emprego de segurança noturno em uma antiga pizzaria, mas mal sabe ele a história por trás de de tal pizzaria e o que o aguarda\", \"Five Nights at Freddy: O Pesadelo sem Fim\", \"01:50:00\", 1, \"https://www.universalpics.com.br/tl_files/content/movies/five_nights/posters/07.jpg\");")
+    cursor.execute("INSERT INTO Filme (descricao, titulo, duracao, id_genero, foto) VALUES (\"Quatro jogadores vão parar em um mundo místico, onde um veterano os ensina o básico para sobrevivência nesse mundo\", \"Minecraft: Um Filme\", \"01:53:40\", 2, \"https://pt.minecraft.wiki/images/thumb/A_Minecraft_Movie_Teaser_Poster.jpg/300px-A_Minecraft_Movie_Teaser_Poster.jpg?9e74d\");")
+
+    conexao.commit()
+
+    # cursor.execute("USE Cinemaps;")
+
+    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (1, 2, \"2025-05-25 14:55:00\");")
+    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (2, 1, \"2025-04-29 17:50:00\");")
+    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (3, 2, \"2025-01-17 16:30:00\");")
+    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (5, 2, \"2024-12-29 18:55:00\");")
+    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (4, 1, \"2024-12-22 19:00:00\");")
+    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (7, 2, \"2025-03-30 11:00:00\");")
+    # cursor.execute("INSERT INTO `Sessao` (id_cinema, id_filme, data_horario) VALUES (6, 2, \"2025-02-23 12:00:00\");")
+
+    # conexao.commit()
+
+    fechar_conexao(conexao)
+
 
 
 def inserir_cinemas() -> None:
@@ -88,6 +121,8 @@ def criar_banco_cinemaps() -> None:
     
     cursor.execute(
         """
+        DROP DATABASE IF EXISTS Cinemaps;
+
         CREATE DATABASE IF NOT EXISTS Cinemaps;
         USE Cinemaps;
         
@@ -112,6 +147,7 @@ def criar_banco_cinemaps() -> None:
             titulo VARCHAR(100) NOT NULL,
             duracao TIME NOT NULL,
             id_genero INT NOT NULL,
+            foto TEXT,
             FOREIGN KEY (id_genero) REFERENCES Genero(id_genero)
         );
 
@@ -162,4 +198,4 @@ def criar_banco_cinemaps() -> None:
 
 
 if __name__ == "__main__":
-    insert_into_tabela({ "nome": "tal", "idade": 3 }, 'tabela')
+    INSERT_INTO_tabela({ "nome": "tal", "idade": 3 }, 'tabela')
