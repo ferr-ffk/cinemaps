@@ -178,7 +178,7 @@ def cinema(cinema: int):
 
 @app.route("/cinemas")
 def cinemas():
-    cinemas = requests.get(request.url_root + "api/cinemas").json()
+    cinemas = requests.get(request.url_root + "api/cinemas", params={"ordenar": "localizacao"}).json()
     
     cinema = request.args.get("cinema")
     
