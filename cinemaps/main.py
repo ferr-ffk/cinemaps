@@ -1,3 +1,4 @@
+import json
 from flask import app, render_template, request, make_response, Flask, redirect, url_for, session, flash
 from flask_bcrypt import Bcrypt 
 import requests
@@ -5,6 +6,8 @@ import requests
 from cinemaps.validacao import *
 from service.usuario import *
 from service.cinema import *
+from service.sessao import *
+from service.filme import *
 from util.sql import criar_banco_cinemaps
 
 app = Flask("cinemaps", template_folder="../templates", static_folder="../static")
@@ -12,8 +15,9 @@ bcrypt = Bcrypt(app)
 
 app.config['SECRET_KEY'] = '\xc3$Fg+\xeb\xb4T\xa4\x19~\xf1$\xbd_}^A\xfcOA_\x9c\xfb\xa3\xcbK\x05\xb9W\xe3\x04'
 
-criar_banco_cinemaps()
-inserir_cinemas()
+# criar_banco_cinemaps()
+# inserir_cinemas()
+# inserir_sessoes_filmes()
 
 
 @app.route("/sair")
@@ -115,7 +119,7 @@ def cadastro_post():
         return render_template("cadastro.html", erro=erro, tipo_erro="danger")
         
     
-    nome_usuario_existe = len(select_from_tabela_por_condicao('usuario', f'WHERE usuario = \'{request.form['usuario']}\'')) > 0
+    nome_usuario_existe = len(select_from_tabela_por_condicao('Usuario', 'WHERE usuario = \'{}\''.format(request.form['usuario']))) > 0
     
     if nome_usuario_existe:
         erro = "Esse nome de usuário já está em uso! Tente criar outro."
@@ -170,11 +174,15 @@ def pagina_get_cookies():
 
 @app.route("/cinemas/<int:cinema>")
 def cinema(cinema: int):
-    cinema = requests.get(request.url_root + f"api/cinemas/{cinema}").json()
+    c = requests.get(request.url_root + f"api/cinemas/{cinema}").json()
     
     cinemas = requests.get(request.url_root + "api/cinemas").json()
+
+    sessoes = requests.get(request.url_root + f"api/sessoes_por_cinema/{cinema}").json()
+
+    filmes = requests.get(request.url_root + "api/filmes").json()
     
-    return render_template("cinema.html", cinema=cinema, cinemas=cinemas)
+    return render_template("cinema.html", cinema=c, cinemas=cinemas, sessoes=sessoes, filmes=filmes)
 
 
 @app.route("/cinemas")
@@ -194,6 +202,26 @@ def filmes():
 @app.route("/filmes/<int:filme>")
 def filme(filme: int):
     return "Filme {}".format(filme)
+
+
+@app.route("/api/filmes")
+def api_filmes():
+    return FilmeService.read_filmes()
+
+
+@app.route("/api/filmes/<int:filme>")
+def api_filme(filme: int):
+    return FilmeService.read_filme('id_filme', filme)[0]
+
+
+@app.route("/api/sessoes")
+def api_sessoes():
+    return SessaoService.read_sessoes()
+
+
+@app.route("/api/sessoes_por_cinema/<int:id_cinema>")
+def api_sessoes_filme(id_cinema: int):
+    return SessaoService.read_sessoes_por_condicao('id_cinema', id_cinema)
 
 
 @app.route("/api/cinemas")
