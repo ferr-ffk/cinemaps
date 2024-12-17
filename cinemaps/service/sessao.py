@@ -9,5 +9,5 @@ class SessaoService:
     def read_sessoes() -> Optional[list]:
         return select_from_tabela(NOME_TABELA)
 
-    def read_sessao(campo: str, valor: str) -> Optional[list]:
+    def read_sessoes_por_condicao(campo: str, valor: str) -> Optional[list]:
         return select_from_tabela_por_condicao(NOME_TABELA, f'WHERE {campo} = \'{valor}\'')
