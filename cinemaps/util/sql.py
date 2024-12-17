@@ -43,7 +43,7 @@ def select_from_tabela_por_condicao(tabela: str, condicao: str) -> Optional[list
     return r
 
 
-def INSERT_INTO_tabela(d: dict, tabela: str) -> None:
+def insert_into_tabela(d: dict, tabela: str) -> None:
     conexao = criar_conexao_padrao()
 
     campos = ', '.join([key for key in d])
@@ -145,7 +145,7 @@ def criar_banco_cinemaps() -> None:
             id_filme INT AUTO_INCREMENT PRIMARY KEY,
             descricao TEXT,
             titulo VARCHAR(100) NOT NULL,
-            duracao TIME NOT NULL,
+            duracao TEXT NOT NULL,
             id_genero INT NOT NULL,
             foto TEXT,
             FOREIGN KEY (id_genero) REFERENCES Genero(id_genero)
@@ -198,4 +198,4 @@ def criar_banco_cinemaps() -> None:
 
 
 if __name__ == "__main__":
-    INSERT_INTO_tabela({ "nome": "tal", "idade": 3 }, 'tabela')
+    insert_into_tabela({ "nome": "tal", "idade": 3 }, 'tabela')
