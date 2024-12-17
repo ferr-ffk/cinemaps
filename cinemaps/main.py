@@ -15,9 +15,9 @@ bcrypt = Bcrypt(app)
 
 app.config['SECRET_KEY'] = '\xc3$Fg+\xeb\xb4T\xa4\x19~\xf1$\xbd_}^A\xfcOA_\x9c\xfb\xa3\xcbK\x05\xb9W\xe3\x04'
 
-criar_banco_cinemaps()
-inserir_cinemas()
-inserir_sessoes_filmes()
+# criar_banco_cinemaps()
+# inserir_cinemas()
+# inserir_sessoes_filmes()
 
 
 @app.route("/sair")
@@ -174,11 +174,13 @@ def pagina_get_cookies():
 
 @app.route("/cinemas/<int:cinema>")
 def cinema(cinema: int):
-    cinema = requests.get(request.url_root + f"api/cinemas/{cinema}").json()
+    c = requests.get(request.url_root + f"api/cinemas/{cinema}").json()
     
     cinemas = requests.get(request.url_root + "api/cinemas").json()
+
+    sessoes = requests.get(request.url_root + f"api/sessoes_por_filme/{cinema}").json()
     
-    return render_template("cinema.html", cinema=cinema, cinemas=cinemas)
+    return render_template("cinema.html", cinema=c, cinemas=cinemas, sessoes=sessoes)
 
 
 @app.route("/cinemas")
