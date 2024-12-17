@@ -36,9 +36,9 @@
         <li class="d-flex flex-row p-1 justify-content-evenly">
             <div class="col-2 bg-secondary border border-0 rounded" style="max-width: 4rem; height: 4rem;">
                 {% if cinema.foto %}
-                    <figure style="overflow: hidden; height: 100%; width: 100%" class="border border-0 rounded">
-                        <img src="{{ cinema.foto }}" alt="">
-                    </figure>
+                    <img style="object-fit: cover; width: 100%; height: 100%" class="border border-0 rounded" src="{{ cinema.foto }}" alt="">
+                    <!-- <figure style="overflow: hidden; height: 100%; width: 100%" class="position-relative border border-0 rounded">
+                    </figure> -->
                 {% endif %}
             </div>
             <div class="col-8 d-flex flex-column">
