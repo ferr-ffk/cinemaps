@@ -7,14 +7,14 @@ CineMaps é uma plataforma de integração de diversos serviços fornecidos por 
 
 ## 👪 Colaboradores
 
-| Integrante       | Funcionalidade |
-|------------------|:--------------:|
-| Felipe Witkowsky |        -       |
-| Fernando Freitas |        -       |
-| Francine Midori  |        -       |
-| Gabriel Tarifa   |        -       |
-| Gustavo Batista  |        -       |
-| Mateus Nogueira  |        -       |
+|    Integrante    | Participação                     |
+|:----------------:|----------------------------------|
+| Felipe Witkowsky | Banco de Dados                   |
+| Fernando Freitas | Front-end                        |
+| Francine Midori  | Banco de Dados                   |
+| Gabriel Tarifa   | Informações de Cinemas e Sessões |
+| Gustavo Batista  | Documentação                     |
+| Mateus Nogueira  | Documentação e Slides            |
 
 ## ⏰ Roteiro de Desenvolvimento
 
