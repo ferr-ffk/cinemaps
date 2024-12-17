@@ -120,7 +120,8 @@ def cadastro_post():
         return render_template("cadastro.html", erro=erro, tipo_erro="danger")
         
     
-    nome_usuario_existe = len(select_from_tabela_por_condicao('Usuario', 'WHERE usuario = \'{}\''.format(request.form['usuario']))) > 0
+    usuarios_banco = requests.get(request.url_root + "api/usuarios").json()
+    nome_usuario_existe = len(usuarios_banco) > 0
     
     if nome_usuario_existe:
         erro = "Esse nome de usuário já está em uso! Tente criar outro."
