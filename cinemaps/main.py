@@ -49,8 +49,7 @@ def login():
 @app.route("/login", methods=['post'])
 def login_post():
     # Pegar id do usuário no banco
-    # TODO: Pegar do fetch ne
-    usuarios_com_id = UsuarioService.read_usuario('email', request.form['email'])
+    usuarios_com_id = requests.get(request.url_root + "api/usuarios").json()
     
     usuario_existe = len(usuarios_com_id) > 0
     
