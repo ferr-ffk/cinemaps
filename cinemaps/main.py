@@ -239,10 +239,8 @@ def api_cinemas():
     ordenar = request.args.get('ordenar')
     
     if ordenar:
-        # TODO: Obter localização do usuário
         latitude, longitude = session['latitude'], session['longitude']
         
-        # TODO: Ordenar os cinemas pela distância até o usuário
         cinemas_banco = sorted(cinemas_banco, key=lambda c: (float(c['latitude']) - latitude)**2 + (float(c['longitude']) - longitude)**2)
     
     return cinemas_banco
