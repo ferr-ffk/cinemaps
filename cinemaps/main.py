@@ -210,6 +210,11 @@ def api_sessoes():
     return SessaoService.read_sessoes()
 
 
+@app.route("/api/sessoes_por_filme/<int:id_cinema>")
+def api_filme_sessoes(id_cinema: int):
+    return SessaoService.read_sessoes_por_condicao('id_cinema', id_cinema)
+
+
 @app.route("/api/cinemas")
 def api_cinemas():
     cinemas_banco = CinemaService.read_cinemas()
