@@ -258,8 +258,8 @@ def api_cinema(cinema: int):
     return CinemaService.read_cinema("id_cinema", cinema)[0]
 
 
-@app.route("/api/usuarios", methods=['post', 'get'])
-def api_usuarios():
+@app.route("/api/usuarios", methods=['post'])
+def api_usuarios_post():
     usuario = {
         "usuario": request.headers.get("usuario"),
         "senha": request.headers.get("senha"),
@@ -269,6 +269,11 @@ def api_usuarios():
     UsuarioService.criar_usuario(usuario)
 
     return redirect(url_for(index.__name__))
+
+
+@app.route("/api/usuarios")
+def api_usuarios():
+    return UsuarioService.read_usuarios()
 
 
 @app.errorhandler(404)
