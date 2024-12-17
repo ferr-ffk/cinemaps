@@ -52,33 +52,27 @@
             </div>
         </div>
         <div class="d-grid gap-3 p-3">
-            <div class="d-flex justify-content-between">
+            {% for sessao in sessoes %}
+                <h4 class="fs-1">
+                    Sessão do dia {{ sessao['format_data_horario'] }}:
+                </h4>
                 <div>
-                    <h4 class="fs-2">FILME</h4>
-                    <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, deserunt molestias quo architecto optio sapiente!</p>
+                    {% for filme in filmes %}
+                        {% if filme['id_filme'] == sessao['id_filme'] %}
+                            <div class="d-flex gap-4 justify-content-between">
+                                <div>
+                                    <h5 class="fs-3">{{ filme['titulo'] }}</h5>
+                                    <p style="font-size: 0.8rem;">{{ filme['descricao'] }}</p>
+                                    <p class="fs-6 fw-bold">Duração: {{ filme['duracao'] }}</p>
+                                </div>
+                                <div>
+                                    <img class="img-fluid rounded" src="{{ filme['foto'] }}" alt="">
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-                <div>
-                    <img class="img-fluid rounded" src="https://placehold.co/600x300/png" alt="">
-                </div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <div>
-                    <h4 class="fs-2">FILME</h4>
-                    <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, deserunt molestias quo architecto optio sapiente!</p>
-                </div>
-                <div>
-                    <img class="img-fluid rounded" src="https://placehold.co/600x300/png" alt="">
-                </div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <div>
-                    <h4 class="fs-2">FILME</h4>
-                    <p class="fs-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus, deserunt molestias quo architecto optio sapiente!</p>
-                </div>
-                <div>
-                    <img class="img-fluid rounded" src="https://placehold.co/600x300/png" alt="">
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
